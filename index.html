@@ -33,14 +33,7 @@
     <!-- Framer Motion UMD -->
     <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
 
-    <!-- Kakao SDK -->
-    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js"
-        integrity="sha384-6MFdIr0zOira1CHQkedUqJVql0YtcZA1O00Jwg-24e0NnmtUssxANXwvrI6Q40O3"
-        crossorigin="anonymous"></script>
-    <script>
-        // 카카오 SDK 초기화 (전도사님 실제 발급 키)
-        Kakao.init('ed5b893a06b04179cba97110c21f1fcb'); 
-    </script>
+
 
     <!-- Google Fonts: Pretendard -->
     <style>
@@ -90,69 +83,7 @@
         const { useState, useEffect, useRef } = React;
         const { motion, AnimatePresence, useInView } = window.Motion;
 
-        /* ==============================
-           [오디오 컴포넌트] BGM Player (로컬 오디오 파일)
-           ============================== */
-        const AudioPlayer = () => {
-            const audioRef = useRef(null);
-            const [isPlaying, setIsPlaying] = useState(false);
-            const [hasInteracted, setHasInteracted] = useState(false);
 
-            // 전도사님이 C:\Users\송천 PC1\.gemini\antigravity\scratch\dramatic-epilogue\public\ 
-            // 폴더 안에 넣은 'bgm.MP3' 파일을 재생합니다.
-            const audioUrl = "./bgm.MP3";
-
-            useEffect(() => {
-                const handleFirstInteraction = () => {
-                    if (!hasInteracted && audioRef.current) {
-                        audioRef.current.volume = 0.5;
-                        audioRef.current.play().then(() => {
-                            setIsPlaying(true);
-                            setHasInteracted(true);
-                        }).catch(e => console.log("Audio autoplay prevented by browser. User interaction needed."));
-
-                        window.removeEventListener('click', handleFirstInteraction);
-                        window.removeEventListener('scroll', handleFirstInteraction);
-                        window.removeEventListener('touchstart', handleFirstInteraction);
-                    }
-                };
-
-                window.addEventListener('click', handleFirstInteraction);
-                window.addEventListener('scroll', handleFirstInteraction);
-                window.addEventListener('touchstart', handleFirstInteraction);
-
-                return () => {
-                    window.removeEventListener('click', handleFirstInteraction);
-                    window.removeEventListener('scroll', handleFirstInteraction);
-                    window.removeEventListener('touchstart', handleFirstInteraction);
-                };
-            }, [hasInteracted]);
-
-            const togglePlay = () => {
-                if (isPlaying) {
-                    audioRef.current.pause();
-                } else {
-                    audioRef.current.play();
-                }
-                setIsPlaying(!isPlaying);
-            };
-
-            return (
-                <div className="fixed top-6 right-6 z-50">
-                    <audio ref={audioRef} src={audioUrl} loop />
-                    <button
-                        onClick={togglePlay}
-                        className={`w-12 h-12 rounded-full backdrop-blur-md flex items-center justify-center border transition-all duration-300 shadow-lg ${isPlaying ? 'bg-neonLime/20 border-neonLime text-neonLime shadow-[0_0_15px_rgba(204,255,0,0.3)]' : 'bg-zinc-900/80 border-zinc-500 text-gray-300 hover:text-white'}`}
-                    >
-                        {isPlaying ? (
-                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 4h4v16H6zm8 0h4v16h-4z" /></svg>
-                        ) : (
-                            <svg className="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                        )}
-                    </button>
-                </div>
-            );
-        };
 
         /* ==============================
            [섹션 1] Hero Section
@@ -260,15 +191,13 @@
                             {cards.map((card, i) => (
                                 <motion.div
                                     key={card.id}
-                                    layout
                                     initial={{ opacity: 0, scale: 0.9, y: 30 }}
                                     whileInView={{ opacity: 1, scale: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{
                                         opacity: { duration: 0.4 },
                                         scale: { type: "spring", stiffness: 300, damping: 30 },
-                                        y: { type: "spring", stiffness: 300, damping: 30 },
-                                        layout: { type: "spring", stiffness: 300, damping: 30 }
+                                        y: { type: "spring", stiffness: 300, damping: 30 }
                                     }}
                                     onClick={() => {
                                         const isActivating = activeCard !== card.id;
@@ -287,10 +216,10 @@
                                     id={`story-card-${card.id}`}
                                     className={`relative w-full cursor-pointer transition-all duration-500 ease-out flex-shrink-0 bg-zinc-900/80 backdrop-blur-md rounded-3xl overflow-hidden shadow-2xl group
                      ${activeCard === card.id
-                                            ? 'md:w-[600px] h-[400px] md:h-[550px] md:flex-grow border-2 border-neonLime z-10 shadow-[0_0_30px_rgba(204,255,0,0.2)] scale-[1.02] md:scale-100'
+                                            ? 'md:w-[600px] h-[450px] md:h-[550px] md:flex-grow border-2 border-neonLime z-10 shadow-[0_0_30px_rgba(204,255,0,0.2)]'
                                             : activeCard === null
-                                                ? 'md:w-80 h-[380px] md:h-[550px] md:flex-1 border border-zinc-800'
-                                                : 'md:w-24 h-[380px] md:h-[550px] border border-zinc-800 grayscale opacity-60 md:opacity-40 hover:grayscale-0 hover:opacity-100'
+                                                ? 'md:w-80 h-[450px] md:h-[550px] md:flex-1 border border-zinc-800'
+                                                : 'md:w-24 h-[450px] md:h-[550px] border border-zinc-800 grayscale opacity-60 md:opacity-40'
                                         }
                    `}
                                 >
@@ -672,37 +601,7 @@
            [섹션 7] Footer (Mutual Blessing & Share)
            ============================== */
         const FooterSection = () => {
-            const shareToKakao = () => {
-                try {
-                    if (window.Kakao && window.Kakao.isInitialized()) {
-                        window.Kakao.Share.sendDefault({
-                            objectType: 'feed',
-                            content: {
-                                title: 'Dramatic Epilogue: 너 T야?',
-                                description: '십자가를 통과한 상처는 가장 빛나는 별이 됩니다.',
-                                imageUrl: 'https://images.unsplash.com/photo-1519817650390-64d9b265aa30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                                link: {
-                                    mobileWebUrl: 'https://cornerstone12107-wq.github.io/dramatic-epilogue/',
-                                    webUrl: 'https://cornerstone12107-wq.github.io/dramatic-epilogue/',
-                                },
-                            },
-                            buttons: [
-                                {
-                                    title: '나의 은혜 나누기',
-                                    link: {
-                                        mobileWebUrl: 'https://cornerstone12107-wq.github.io/dramatic-epilogue/',
-                                        webUrl: 'https://cornerstone12107-wq.github.io/dramatic-epilogue/',
-                                    },
-                                },
-                            ],
-                        });
-                    } else {
-                        alert('카카오톡 시스템이 아직 로딩되지 않았거나 설정 오류입니다. 페이지를 한번 새로고침해주세요!');
-                    }
-                } catch (e) {
-                    alert('카카오톡 공유가 막혔습니다. 도메인(cornerstone12107-wq.github.io) 등록이 안 되었거나 오타가 있습니다!\n\n에러 메시지: ' + e.message);
-                }
-            };
+
 
             return (
                 <footer className="py-40 px-6 relative flex flex-col items-center border-t border-zinc-900 bg-zinc-950 text-center overflow-hidden">
@@ -727,16 +626,7 @@
                             </p>
                         </div>
 
-                        <button
-                            onClick={shareToKakao}
-                            className="group flex justify-center items-center gap-4 w-full md:w-auto mx-auto bg-[#FEE500] hover:bg-[#F4DC00] text-[#191919] font-bold py-5 px-10 rounded-[2rem] transition-all hover:scale-105 hover:shadow-[0_10px_30px_rgba(254,229,0,0.2)]"
-                        >
-                            <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 3c-5.523 0-10 3.5-10 7.8 0 2.766 1.745 5.176 4.382 6.51-.432 1.623-1.637 5.568-1.673 5.716-.048.196.12.18.232.115.148-.086 4.686-3.141 6.36-4.293.227.025.46.042.699.042 5.523 0 10-3.5 10-7.8S17.523 3 12 3z" />
-                            </svg>
-                            <span className="text-lg">카카오톡으로 친구에게 공유하기</span>
-                            <svg className="w-5 h-5 opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                        </button>
+
 
                         <p className="mt-24 text-[10px] md:text-xs text-gray-600 tracking-[0.3em] font-light uppercase">
                             &copy; 2026 Dramatic Epilogue | Songcheon Youth
@@ -752,7 +642,7 @@
         const App = () => {
             return (
                 <main className="bg-black min-h-screen text-white selection:bg-neonLime selection:text-black font-sans">
-                    <AudioPlayer />
+
                     <HeroSection />
                     <StorySection />
                     <MessageSection />
