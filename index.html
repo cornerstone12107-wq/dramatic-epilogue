@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dramatic Epilogue - 너 T야?</title>
+
+    <!-- React, ReactDOM, Babel for browser compilation -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        neonLime: '#CCFF00',
+                        warmGold: '#FFD700',
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Framer Motion UMD -->
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+
+    <!-- Kakao SDK -->
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js"
+        integrity="sha384-6MFdIr0zOira1CHQkedUqJVql0YtcZA1O00Jwg-24e0NnmtUssxANXwvrI6Q40O3"
+        crossorigin="anonymous"></script>
+    <script>
+        // 카카오 SDK 초기화 (임시 데모 앱 키 사용, 실제 운영 시에는 발급받은 키로 교체 필요)
+        Kakao.init('c54fecf0a2ba4d11fcb612caabc55964'); 
+    </script>
+
+    <!-- Google Fonts: Pretendard -->
+    <style>
+        @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Pretendard', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Noise Background Texture */
+        .noise-bg {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        /* Hide scrollbar for horizontal scroll area */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- Main Application Code in JSX -->
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+        const { motion, AnimatePresence, useInView } = window.Motion;
+
+        /* ==============================
+           [오디오 컴포넌트] BGM Player (로컬 오디오 파일)
+           ============================== */
+        const AudioPlayer = () => {
+            const audioRef = useRef(null);
+            const [isPlaying, setIsPlaying] = useState(false);
+            const [hasInteracted, setHasInteracted] = useState(false);
+
+            // 전도사님이 C:\Users\송천 PC1\.gemini\antigravity\scratch\dramatic-epilogue\public\ 
+            // 폴더 안에 넣은 'bgm.mp3' 파일을 재생합니다.
+            const audioUrl = "./public/bgm.mp3";
+
+            useEffect(() => {
+                const handleFirstInteraction = () => {
+                    if (!hasInteracted && audioRef.current) {
+                        audioRef.current.volume = 0.5;
+                        audioRef.current.play().then(() => {
+                            setIsPlaying(true);
+                            setHasInteracted(true);
+                        }).catch(e => console.log("Audio autoplay prevented by browser. User interaction needed."));
+
+                        window.removeEventListener('click', handleFirstInteraction);
+                        window.removeEventListener('scroll', handleFirstInteraction);
+                        window.removeEventListener('touchstart', handleFirstInteraction);
+                    }
+                };
+
+                window.addEventListener('click', handleFirstInteraction);
+                window.addEventListener('scroll', handleFirstInteraction);
+                window.addEventListener('touchstart', handleFirstInteraction);
+
+                return () => {
+                    window.removeEventListener('click', handleFirstInteraction);
+                    window.removeEventListener('scroll', handleFirstInteraction);
+                    window.removeEventListener('touchstart', handleFirstInteraction);
+                };
+            }, [hasInteracted]);
+
+            const togglePlay = () => {
+                if (isPlaying) {
+                    audioRef.current.pause();
+                } else {
+                    audioRef.current.play();
+                }
+                setIsPlaying(!isPlaying);
+            };
+
+            return (
+                <div className="fixed top-6 right-6 z-50">
+                    <audio ref={audioRef} src={audioUrl} loop />
+                    <button
+                        onClick={togglePlay}
+                        className={`w-12 h-12 rounded-full backdrop-blur-md flex items-center justify-center border transition-all duration-300 shadow-lg ${isPlaying ? 'bg-neonLime/20 border-neonLime text-neonLime shadow-[0_0_15px_rgba(204,255,0,0.3)]' : 'bg-zinc-900/80 border-zinc-500 text-gray-300 hover:text-white'}`}
+                    >
+                        {isPlaying ? (
+                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 4h4v16H6zm8 0h4v16h-4z" /></svg>
+                        ) : (
+                            <svg className="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                        )}
+                    </button>
+                </div>
+            );
+        };
+
+        /* ==============================
+           [섹션 1] Hero Section
+           ============================== */
+        const HeroSection = () => {
+            const text = "너 T야?";
+            const [displayedText, setDisplayedText] = useState("");
+
+            useEffect(() => {
+                let i = 0;
+                const interval = setInterval(() => {
+                    setDisplayedText(text.slice(0, i + 1));
+                    i++;
+                    if (i === text.length) clearInterval(interval);
+                }, 150);
+                return () => clearInterval(interval);
+            }, []);
+
+            return (
+                <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6">
+                    <div className="noise-bg absolute inset-0 mix-blend-overlay"></div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className="absolute top-8 left-0 right-0 text-center z-10"
+                    >
+                        <h1 className="text-xs md:text-sm tracking-[0.4em] text-gray-500 font-light">DRAMATIC EPILOGUE</h1>
+                    </motion.div>
+
+                    <div className="z-10 flex flex-col items-center text-center mt-12">
+                        <h2 className="text-6xl md:text-8xl font-bold text-neonLime mb-4 min-h-[5rem] tracking-tighter drop-shadow-[0_0_15px_rgba(204,255,0,0.3)]">
+                            {displayedText}
+                            <motion.span
+                                animate={{ opacity: [1, 0] }}
+                                transition={{ repeat: Infinity, duration: 0.8 }}
+                            >_</motion.span>
+                        </h2>
+                        <motion.p
+                            initial={{ opacity: 0, filter: 'blur(10px)' }}
+                            animate={{ opacity: 1, filter: 'blur(0px)' }}
+                            transition={{ delay: 1.5, duration: 1.2 }}
+                            className="text-xl md:text-2xl text-gray-400 font-light tracking-widest mt-4"
+                        >
+                            상처 입은 치유자, 예수님
+                        </motion.p>
+                    </div>
+
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 2.5, duration: 1 }}
+                        className="absolute bottom-12 z-10 flex flex-col items-center"
+                    >
+                        <span className="text-[10px] text-gray-500 mb-4 uppercase tracking-[0.3em]">Scroll Down</span>
+                        <motion.div
+                            animate={{ y: [0, 15, 0] }}
+                            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                            className="w-[1px] h-16 bg-gradient-to-b from-gray-500 to-transparent"
+                        />
+                    </motion.div>
+                </section>
+            );
+        };
+
+        /* ==============================
+           [섹션 2] Story Section (Cards)
+           ============================== */
+        const StorySection = () => {
+            const cards = [
+                {
+                    id: 1,
+                    image: "./public/card1.png",
+                    text: "전도사님 MBTI가 파워 ENFP인 거 알지?\n근데 얼마 전에 검사했더니...\n역대 최저점으로 '|T|'가 나왔어. (충격)",
+                },
+                {
+                    id: 2,
+                    image: "./public/card2.png",
+                    text: "세상은 묻습니다. '|너 T야?|'\n이 장난스러운 말 속에는 사실,\n내 아픔을 진심으로 |공감|받고 싶은\n우리의 외로운 마음이 숨어있지 않을까?",
+                },
+                {
+                    id: 3,
+                    image: "./public/card3.png",
+                    text: "새 학기, 우리는 또다시 낯선 교실 문을 열어야 해.\n상처받지 않으려고 꽁꽁 싸매던 방어막을 벗고,\n내 진짜 모습으로 세상에 나아간다는 건...\n마치 |맨발|로 거친 땅을 걷는 것 같은 |두려움|이지.",
+                }
+            ];
+
+            const [activeCard, setActiveCard] = useState(null);
+
+            return (
+                <section className="py-24 md:py-32 px-6 md:px-12 bg-zinc-950 relative overflow-hidden">
+                    <div className="max-w-7xl mx-auto">
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            className="mb-12 md:mb-16"
+                        >
+                            <h3 className="text-3xl md:text-5xl font-bold mb-6 text-white tracking-tight">오프닝 스토리</h3>
+                            <div className="w-16 h-1 bg-neonLime rounded-full shadow-[0_0_10px_#CCFF00]"></div>
+                        </motion.div>
+
+                        <div className="flex flex-col md:flex-row gap-6 md:gap-10 pb-12 w-full justify-center">
+                            {cards.map((card, i) => (
+                                <motion.div
+                                    key={card.id}
+                                    layout
+                                    initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{
+                                        opacity: { duration: 0.4 },
+                                        scale: { type: "spring", stiffness: 300, damping: 30 },
+                                        y: { type: "spring", stiffness: 300, damping: 30 },
+                                        layout: { type: "spring", stiffness: 300, damping: 30 }
+                                    }}
+                                    onClick={() => setActiveCard(activeCard === card.id ? null : card.id)}
+                                    className={`relative cursor-pointer transition-all duration-300 ease-out flex-shrink-0 bg-zinc-900/80 backdrop-blur-md rounded-3xl overflow-hidden border border-zinc-800 shadow-2xl group hover:border-zinc-500
+                     ${activeCard === card.id
+                                            ? 'w-[90vw] md:w-[600px] h-[500px] md:h-[600px] md:flex-grow'
+                                            : activeCard === null
+                                                ? 'w-[80vw] md:w-80 h-[400px] md:h-[500px] md:flex-1'
+                                                : 'w-[20vw] md:w-24 h-[120px] md:h-[500px] grayscale opacity-50 hover:grayscale-0 hover:opacity-100'
+                                        }
+                   `}
+                                >
+                                    {/* Background Image Layer */}
+                                    <div
+                                        className="absolute inset-0 bg-cover bg-center transition-all duration-500 ease-out"
+                                        style={{
+                                            backgroundImage: `url('${card.image}')`,
+                                            filter: activeCard === card.id ? "brightness(0.8) contrast(1.1)" : "brightness(0.3) blur(2px)",
+                                            transform: activeCard === card.id ? "scale(1.05)" : "scale(1)"
+                                        }}
+                                    />
+
+                                    {/* Dark Gradient Overlay */}
+                                    <div className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 transition-opacity duration-500 ${activeCard === card.id ? 'opacity-80' : 'opacity-100'}`} />
+
+                                    {/* Content */}
+                                    <div className={`absolute inset-0 p-8 md:p-10 flex flex-col transition-opacity duration-300 ${activeCard !== card.id && activeCard !== null ? 'opacity-0 md:opacity-100' : 'opacity-100'}`}>
+                                        <div className="flex-1">
+                                            <h4 className={`text-4xl md:text-6xl font-black text-white/20 transition-all duration-500 ${activeCard !== null && activeCard !== card.id ? 'md:-rotate-90 md:origin-top-left md:translate-y-40' : ''}`}>
+                                                0{card.id}
+                                            </h4>
+                                        </div>
+
+                                        <div className={`transition-all duration-500 ${activeCard !== null && activeCard !== card.id ? 'md:opacity-0 md:translate-y-10 hidden md:block' : 'opacity-100 translate-y-0'}`}>
+                                            <AnimatePresence mode="wait">
+                                                <motion.p
+                                                    key={activeCard === card.id ? 'full' : 'short'}
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: -10 }}
+                                                    className={`leading-[1.8] text-gray-100 font-medium whitespace-pre-line drop-shadow-md ${activeCard === card.id ? 'text-2xl md:text-3xl' : 'text-xl'}`}
+                                                >
+                                                    {card.text.split("|").map((part, index) =>
+                                                        index % 2 === 1
+                                                            ? <span key={index} className="text-neonLime font-bold drop-shadow-[0_0_8px_rgba(204,255,0,0.4)]">{part}</span>
+                                                            : part
+                                                    )}
+                                                </motion.p>
+                                            </AnimatePresence>
+
+                                            {activeCard !== card.id && (
+                                                <motion.div
+                                                    initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                                                    className="mt-6 inline-flex items-center text-xs tracking-[0.2em] text-white/50 border border-white/20 rounded-full py-1 px-3 backdrop-blur-sm"
+                                                >
+                                                    터치해서 보기
+                                                </motion.div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        /* ==============================
+           [섹션 3] Core Message (Scroll Reveal)
+           ============================== */
+        const MessageSection = () => {
+            const ref = useRef(null);
+            const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+            const messages = [
+                "누군가의 따뜻한 공감이 필요할 때,<br/>예수님은 멀리서 말씀으로만<br className='md:hidden'/> 우리를 고치시지 않았습니다.",
+                "남몰래 아파하는 사람들을 안아주기 위해,<br/> 화려한 예루살렘이 아닌 아픔 많은 땅<br/> <span class='text-warmGold font-bold drop-shadow-[0_0_5px_rgba(255,215,0,0.5)]'>'갈릴리'</span>로 직접 찾아오셨습니다.",
+                "상처받기 쉬운 나의 모습처럼,<br/> 예수님도 기꺼이 거친 흙바닥을<br/> <span class='text-warmGold font-bold text-2xl md:text-5xl px-2'>맨발</span>로 걸어 우리 곁으로 오셨습니다.",
+                "우리의 아픔을 1초도 더 두고 볼 수 없는<br/> <span class='text-neonLime font-bold px-2 underline decoration-wavy decoration-neonLime/50 underline-offset-8 mt-2 inline-block'>'미친 듯한 갈망'</span><br/> 때문이었습니다."
+            ];
+
+            return (
+                <section className="py-40 px-6 flex flex-col items-center justify-center relative bg-black min-h-screen">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.03)_0%,transparent_70%)] pointer-events-none"></div>
+
+                    <motion.div
+                        ref={ref}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 1 }}
+                        className="w-full max-w-4xl mx-auto text-center z-10"
+                    >
+                        <motion.div
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="inline-block px-5 py-2 rounded-full border border-gray-800 bg-gray-900/50 text-xs md:text-sm tracking-widest text-gray-400 mb-16 backdrop-blur-sm"
+                        >
+                            마태복음 4:23-25
+                        </motion.div>
+
+                        <div className="space-y-24 md:space-y-32">
+                            {messages.map((msg, i) => (
+                                <motion.p
+                                    key={i}
+                                    initial={{ opacity: 0, y: 30, filter: 'blur(5px)' }}
+                                    animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: 30, filter: 'blur(5px)' }}
+                                    transition={{ delay: 0.6 + (i * 0.5), duration: 1 }}
+                                    className="text-2xl md:text-5xl leading-[1.6] md:leading-tight text-gray-200 font-light break-keep"
+                                    dangerouslySetInnerHTML={{ __html: msg }}
+                                />
+                            ))}
+                        </div>
+                    </motion.div>
+                </section>
+            );
+        };
+
+        /* ==============================
+           [섹션 4] ★ KILLER CONTENTS ★
+           ============================== */
+        const KillerSection = () => {
+            const ref = useRef(null);
+            const isInView = useInView(ref, { once: false, amount: 0.6 });
+            const [stage, setStage] = useState(0);
+            // 0: SCAR, 1: S AR, 2: t drops, 3: StAR + fireworks
+
+            useEffect(() => {
+                if (isInView) {
+                    const t1 = setTimeout(() => setStage(1), 800);  // C disappears
+                    const t2 = setTimeout(() => setStage(2), 1600); // t drops
+                    const t3 = setTimeout(() => setStage(3), 2200); // Turns Gold & Particles
+
+                    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+                } else {
+                    setStage(0);
+                }
+            }, [isInView]);
+
+            // Pre-generate random particles
+            const particles = Array.from({ length: 60 }).map((_, i) => ({
+                id: i,
+                angle: Math.random() * Math.PI * 2,
+                distance: 100 + Math.random() * 250,
+                size: 3 + Math.random() * 8,
+                duration: 0.8 + Math.random() * 2,
+                delay: Math.random() * 0.2
+            }));
+
+            return (
+                <section ref={ref} className="h-[120vh] relative flex items-center justify-center overflow-hidden bg-zinc-950/80">
+                    <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center">
+
+                        <div className="relative flex items-center justify-center text-[5rem] md:text-[12rem] font-black tracking-widest mix-blend-screen">
+                            {/* S */}
+                            <span className="z-10 transition-all duration-1000" style={{ color: stage === 3 ? '#FFD700' : '#d1d5db', textShadow: stage === 3 ? '0 0 30px rgba(255,215,0,0.5)' : 'none' }}>S</span>
+
+                            <div className="relative w-[0.8em] h-[1.2em] flex items-center justify-center z-10">
+                                {/* The fading 'C' */}
+                                <motion.span
+                                    animate={{
+                                        opacity: stage >= 1 ? 0 : 1,
+                                        filter: stage >= 1 ? 'blur(20px)' : 'blur(0px)',
+                                        scale: stage >= 1 ? 1.5 : 1
+                                    }}
+                                    transition={{ duration: 0.8, ease: "easeOut" }}
+                                    className="absolute text-gray-500"
+                                >
+                                    C
+                                </motion.span>
+
+                                {/* The dropping 't' */}
+                                <motion.span
+                                    initial={{ y: -500, opacity: 0, color: '#ef4444', rotate: 15 }}
+                                    animate={
+                                        stage >= 2
+                                            ? { y: 0, opacity: 1, rotate: 0, color: stage === 3 ? '#FFD700' : '#ef4444' }
+                                            : { y: -500, opacity: 0, rotate: 15, color: '#ef4444' }
+                                    }
+                                    transition={{
+                                        y: { type: "spring", stiffness: 150, damping: 15, bounce: 0.5 },
+                                        opacity: { duration: 0.2 },
+                                        rotate: { type: "spring", stiffness: 100 },
+                                        color: { duration: 0.8, ease: "easeInOut" }
+                                    }}
+                                    className="absolute font-serif"
+                                    style={{ textShadow: stage === 3 ? '0 0 40px rgba(255,215,0,0.8)' : '0 0 20px rgba(239,68,68,0.5)' }}
+                                >
+                                    t
+                                </motion.span>
+                            </div>
+
+                            {/* A & R */}
+                            <span className="z-10 transition-all duration-1000" style={{ color: stage === 3 ? '#FFD700' : '#d1d5db', textShadow: stage === 3 ? '0 0 30px rgba(255,215,0,0.5)' : 'none' }}>A</span>
+                            <span className="z-10 transition-all duration-1000" style={{ color: stage === 3 ? '#FFD700' : '#d1d5db', textShadow: stage === 3 ? '0 0 30px rgba(255,215,0,0.5)' : 'none' }}>R</span>
+
+                            {/* Explosion Particles */}
+                            <AnimatePresence>
+                                {stage === 3 && particles.map((p) => (
+                                    <motion.div
+                                        key={p.id}
+                                        initial={{ x: 0, y: 0, opacity: 1, scale: 0 }}
+                                        animate={{
+                                            x: Math.cos(p.angle) * p.distance,
+                                            y: Math.sin(p.angle) * p.distance,
+                                            opacity: 0,
+                                            scale: Math.random() > 0.5 ? 1 : 0.5
+                                        }}
+                                        transition={{ duration: p.duration, delay: p.delay, ease: "easeOut" }}
+                                        className="absolute top-1/2 left-1/2 rounded-full bg-warmGold"
+                                        style={{
+                                            width: p.size,
+                                            height: p.size,
+                                            boxShadow: '0 0 15px #FFD700, 0 0 30px #FFD700'
+                                        }}
+                                    />
+                                ))}
+                            </AnimatePresence>
+
+                            {/* Background Glow when StAR */}
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: stage === 3 ? 0.3 : 0, scale: stage === 3 ? 1.2 : 0.8 }}
+                                transition={{ duration: 1.5, ease: "easeOut" }}
+                                className="absolute inset-0 bg-warmGold blur-[120px] rounded-full w-full h-full md:w-[600px] md:h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
+                            />
+                        </div>
+
+                        {/* Bottom Message */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={stage === 3 ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                            transition={{ delay: 0.8, duration: 1 }}
+                            className="mt-16 md:mt-24 text-center z-10 px-4 max-w-2xl mx-auto"
+                        >
+                            <p className="text-xl md:text-2xl font-light text-gray-300 leading-relaxed mb-4">
+                                우리가 꽁꽁 숨기고 싶던 찌질한 콤플렉스와 상처(C)가<br className="hidden md:block" />
+                                나를 위해 대신 찢기신 예수님의 십자가(t)를 만날 때,
+                            </p>
+                            <p className="text-2xl md:text-4xl font-light tracking-wide text-white">
+                                우리의 상처는 더 이상 흉터(SCAR)가 아니라,<br className="hidden md:block" /> 누군가를 비추는 빛나는 <span className="font-bold text-warmGold drop-shadow-[0_0_15px_rgba(255,215,0,0.8)]">별(StAR)</span>이 됩니다.
+                            </p>
+                        </motion.div>
+
+                    </div>
+                </section>
+            );
+        };
+
+        /* ==============================
+           [섹션 5] Sermon Summary (오늘의 설교 요약)
+           ============================== */
+        const SummarySection = () => {
+            const summaries = [
+                "화려한 예루살렘이 아니라, 상처받고 외로운 사람들이 가득한 척박한 땅, <strong>'갈릴리'</strong>.",
+                "하나님의 아들 예수님은 우리의 아픔을 외면하지 않으시고, 남몰래 아파하는 나와 직접 교감하시기 위해 거친 흙바닥 같은 이땅에 기꺼이 <strong>맨발</strong>로 오셨습니다.",
+                "세상의 차가운 '너 T야?' 같은 말에 찔리고, 꽁꽁 감추고 싶던 나의 부끄러운 콤플렉스와 상처(<strong>C</strong>)를 거짓된 겉옷으로 가리지 마세요.",
+                "나를 위해 기꺼이 상처받으신 치유자, 예수님의 십자가 사랑(<strong>t</strong>)을 통과할 때, 우리의 비참한 흉터(<strong>SCAR</strong>)는 누군가를 비추는 빛나는 <strong>별(StAR)</strong>이 됩니다."
+            ];
+
+            return (
+                <section className="py-32 px-6 max-w-4xl mx-auto bg-black relative">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-20 bg-gradient-to-b from-transparent to-zinc-700"></div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="mb-16 text-center mt-10"
+                    >
+                        <h3 className="text-3xl md:text-5xl font-bold mb-4 text-white tracking-tight">📝 오늘의 설교 요약</h3>
+                        <p className="text-lg text-gray-400 font-light">가슴에 새겨야 할 단 하나의 메시지</p>
+                    </motion.div>
+
+                    <div className="space-y-8 pl-4 border-l-2 border-zinc-800">
+                        {summaries.map((text, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ delay: i * 0.15 }}
+                                className="relative"
+                            >
+                                <div className="absolute -left-[25px] top-2 w-3 h-3 rounded-full bg-neonLime shadow-[0_0_10px_rgba(204,255,0,0.5)]"></div>
+                                <p
+                                    className="text-lg md:text-2xl text-gray-300 leading-relaxed font-light break-keep"
+                                    dangerouslySetInnerHTML={{ __html: text }}
+                                />
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+            );
+        };
+
+        /* ==============================
+           [섹션 6] 식탁 질문 & 액션 플랜 (Accordion)
+           ============================== */
+        const AccordionItem = ({ question, answer, isOpen, onClick }) => {
+            return (
+                <div className="border-b border-zinc-800/50 last:border-0">
+                    <button
+                        className="w-full py-8 flex justify-between items-center text-left focus:outline-none group"
+                        onClick={onClick}
+                    >
+                        <span className={`text-lg md:text-2xl font-medium transition-colors ${isOpen ? 'text-neonLime' : 'text-gray-300 group-hover:text-white'}`}>
+                            {question}
+                        </span>
+                        <motion.div
+                            animate={{ rotate: isOpen ? 180 : 0 }}
+                            className={`flex-shrink-0 ml-6 h-8 w-8 rounded-full border border-gray-700 flex items-center justify-center transition-colors ${isOpen ? 'bg-neonLime border-neonLime text-black' : 'text-gray-400 group-hover:border-gray-500'}`}
+                        >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </motion.div>
+                    </button>
+                    <AnimatePresence>
+                        {isOpen && (
+                            <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.4, ease: "easeInOut" }}
+                                className="overflow-hidden"
+                            >
+                                <div className="pb-8 text-gray-400 text-base md:text-lg leading-relaxed max-w-3xl">
+                                    {answer}
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+            );
+        };
+
+        const FamilyTableSection = () => {
+            const [openId, setOpenId] = useState(0);
+
+            const items = [
+                {
+                    id: 0,
+                    q: "💬 이번 주 식탁 질문",
+                    title: "\"아빠/엄마의 학창 시절, 가장 감추고 싶던 '콤플렉스'나 '상처'는 무엇이었나요? 그리고 어떻게 극복하셨나요?\"",
+                    a: "부모님의 솔직하고 연약했던 학창 시절 이야기를 나누어주세요. 부모님의 상처(SCAR)가 자녀에게는 가장 따뜻한 위로와 공감의 빛(StAR)이 될 수 있습니다. 우리 가족 모두가 서로의 아픔을 공감할 수 있는 상처 입은 치유자가 되어보세요!"
+                },
+                {
+                    id: 1,
+                    q: "⚡ 나의 Action Plan",
+                    title: "이번 주, 나도 누군가에게 '별'처럼 다가가기",
+                    a: "새 학기 낯선 교실에서 겉도는 친구, 짝꿍, 혹은 외로워하는 가족이나 친구가 있나요? 우린 같은 상처를 아파본 '경험자'입니다. 십자가 사랑을 의지해 내가 먼저 손 내밀어줄 작고 따뜻한 행동 한 가지를 결단해보세요."
+                }
+            ];
+
+            return (
+                <section className="py-24 px-6 max-w-5xl mx-auto bg-black">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="mb-16 text-center"
+                    >
+                        <h3 className="text-3xl md:text-5xl font-bold mb-4 text-white tracking-tight">🍽️ 식탁 대화 & 액션</h3>
+                        <p className="text-lg text-gray-400 font-light">가족이 함께 나누는 깊은 은혜</p>
+                    </motion.div>
+
+                    <div className="bg-zinc-900/40 backdrop-blur-xl border border-zinc-800/80 rounded-[2.5rem] p-8 md:p-14 shadow-2xl">
+                        {items.map((item) => (
+                            <AccordionItem
+                                key={item.id}
+                                question={
+                                    <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
+                                        <span className="text-neonLime text-sm md:text-base font-bold whitespace-nowrap bg-neonLime/10 px-4 py-2 rounded-full border border-neonLime/30">{item.q}</span>
+                                        <span className="font-light leading-snug">{item.title}</span>
+                                    </div>
+                                }
+                                answer={item.a}
+                                isOpen={openId === item.id}
+                                onClick={() => setOpenId(item.id === openId ? null : item.id)}
+                            />
+                        ))}
+                    </div>
+                </section>
+            );
+        };
+
+        /* ==============================
+           [섹션 7] Footer (Mutual Blessing & Share)
+           ============================== */
+        const FooterSection = () => {
+            const shareToKakao = () => {
+                if (window.Kakao) {
+                    window.Kakao.Share.sendDefault({
+                        objectType: 'feed',
+                        content: {
+                            title: 'Dramatic Epilogue: 너 T야?',
+                            description: '십자가를 통과한 상처는 가장 빛나는 별이 됩니다.',
+                            imageUrl: 'https://images.unsplash.com/photo-1519817650390-64d9b265aa30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                            link: {
+                                mobileWebUrl: window.location.href,
+                                webUrl: window.location.href,
+                            },
+                        },
+                        buttons: [
+                            {
+                                title: '나의 은혜 나누기',
+                                link: {
+                                    mobileWebUrl: window.location.href,
+                                    webUrl: window.location.href,
+                                },
+                            },
+                        ],
+                    });
+                }
+            };
+
+            return (
+                <footer className="py-40 px-6 relative flex flex-col items-center border-t border-zinc-900 bg-zinc-950 text-center overflow-hidden">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-warmGold to-transparent opacity-30"></div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1 }}
+                        className="max-w-3xl mx-auto relative z-10 w-full"
+                    >
+                        <h3 className="text-2xl md:text-4xl font-bold mb-10 text-white tracking-widest uppercase">
+                            🙏 서로를 위한 축복기도문
+                        </h3>
+
+                        <div className="bg-gradient-to-br from-zinc-900/80 to-zinc-900/30 p-8 md:p-12 pl-12 md:pl-16 rounded-[2rem] border border-zinc-800 text-left mb-20 relative">
+                            <div className="absolute top-8 left-6 md:left-10 w-1 h-[80%] bg-warmGold rounded-full opacity-50"></div>
+                            <p className="text-lg md:text-2xl font-light text-gray-300 leading-[2.0] break-keep">
+                                {"사랑하는 ____, 이번 한 주 낯선 세상에서 상처받는 것을 두려워하지 않고 나아가게 해주세요."}<br /><br />
+                                {"아픔이 있을지라도 십자가 사랑을 만나 어두움을 밝히는 "}<span className="text-warmGold font-medium">거룩한 별</span>{"이 되고, 연약함 가운데에서도 주변 친구들을 위로하며 살리는 "}<span className="text-neonLime font-medium">따뜻한 치유자</span>{"로 살아가게 해주세요. 예수님의 이름으로 기도합니다."}
+                            </p>
+                        </div>
+
+                        <button
+                            onClick={shareToKakao}
+                            className="group flex justify-center items-center gap-4 w-full md:w-auto mx-auto bg-[#FEE500] hover:bg-[#F4DC00] text-[#191919] font-bold py-5 px-10 rounded-[2rem] transition-all hover:scale-105 hover:shadow-[0_10px_30px_rgba(254,229,0,0.2)]"
+                        >
+                            <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 3c-5.523 0-10 3.5-10 7.8 0 2.766 1.745 5.176 4.382 6.51-.432 1.623-1.637 5.568-1.673 5.716-.048.196.12.18.232.115.148-.086 4.686-3.141 6.36-4.293.227.025.46.042.699.042 5.523 0 10-3.5 10-7.8S17.523 3 12 3z" />
+                            </svg>
+                            <span className="text-lg">카카오톡으로 친구에게 공유하기</span>
+                            <svg className="w-5 h-5 opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                        </button>
+
+                        <p className="mt-24 text-[10px] md:text-xs text-gray-600 tracking-[0.3em] font-light uppercase">
+                            &copy; 2026 Dramatic Epilogue | Songcheon Youth
+                        </p>
+                    </motion.div>
+                </footer>
+            );
+        };
+
+        /* ==============================
+           [메인 앱 컴포넌트]
+           ============================== */
+        const App = () => {
+            return (
+                <main className="bg-black min-h-screen text-white selection:bg-neonLime selection:text-black font-sans">
+                    <AudioPlayer />
+                    <HeroSection />
+                    <StorySection />
+                    <MessageSection />
+                    <KillerSection />
+                    <SummarySection />
+                    <FamilyTableSection />
+                    <FooterSection />
+                </main>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+
+</html>
