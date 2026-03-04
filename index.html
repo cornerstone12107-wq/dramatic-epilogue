@@ -99,8 +99,8 @@
             const [hasInteracted, setHasInteracted] = useState(false);
 
             // 전도사님이 C:\Users\송천 PC1\.gemini\antigravity\scratch\dramatic-epilogue\public\ 
-            // 폴더 안에 넣은 'bgm.mp3' 파일을 재생합니다.
-            const audioUrl = "./bgm.mp3";
+            // 폴더 안에 넣은 'bgm.MP3' 파일을 재생합니다.
+            const audioUrl = "./bgm.MP3";
 
             useEffect(() => {
                 const handleFirstInteraction = () => {
@@ -270,13 +270,27 @@
                                         y: { type: "spring", stiffness: 300, damping: 30 },
                                         layout: { type: "spring", stiffness: 300, damping: 30 }
                                     }}
-                                    onClick={() => setActiveCard(activeCard === card.id ? null : card.id)}
-                                    className={`relative cursor-pointer transition-all duration-300 ease-out flex-shrink-0 bg-zinc-900/80 backdrop-blur-md rounded-3xl overflow-hidden border border-zinc-800 shadow-2xl group hover:border-zinc-500
+                                    onClick={() => {
+                                        const isActivating = activeCard !== card.id;
+                                        setActiveCard(isActivating ? card.id : null);
+                                        // 모바일 환경(너비 768px 미만)일때 그림을 클릭하면 튕기지 않고 화면 중앙으로 부드럽게 고정
+                                        if (isActivating && window.innerWidth < 768) {
+                                            setTimeout(() => {
+                                                const el = document.getElementById(`story-card-${card.id}`);
+                                                if (el) {
+                                                    const y = el.getBoundingClientRect().top + window.scrollY - (window.innerHeight / 2) + (el.clientHeight / 2);
+                                                    window.scrollTo({ top: y, behavior: 'smooth' });
+                                                }
+                                            }, 100);
+                                        }
+                                    }}
+                                    id={`story-card-${card.id}`}
+                                    className={`relative w-full cursor-pointer transition-all duration-500 ease-out flex-shrink-0 bg-zinc-900/80 backdrop-blur-md rounded-3xl overflow-hidden shadow-2xl group
                      ${activeCard === card.id
-                                            ? 'w-[90vw] md:w-[600px] h-[500px] md:h-[600px] md:flex-grow'
+                                            ? 'md:w-[600px] h-[400px] md:h-[550px] md:flex-grow border-2 border-neonLime z-10 shadow-[0_0_30px_rgba(204,255,0,0.2)] scale-[1.02] md:scale-100'
                                             : activeCard === null
-                                                ? 'w-[80vw] md:w-80 h-[400px] md:h-[500px] md:flex-1'
-                                                : 'w-[20vw] md:w-24 h-[120px] md:h-[500px] grayscale opacity-50 hover:grayscale-0 hover:opacity-100'
+                                                ? 'md:w-80 h-[380px] md:h-[550px] md:flex-1 border border-zinc-800'
+                                                : 'md:w-24 h-[380px] md:h-[550px] border border-zinc-800 grayscale opacity-60 md:opacity-40 hover:grayscale-0 hover:opacity-100'
                                         }
                    `}
                                 >
@@ -659,28 +673,34 @@
            ============================== */
         const FooterSection = () => {
             const shareToKakao = () => {
-                if (window.Kakao) {
-                    window.Kakao.Share.sendDefault({
-                        objectType: 'feed',
-                        content: {
-                            title: 'Dramatic Epilogue: 너 T야?',
-                            description: '십자가를 통과한 상처는 가장 빛나는 별이 됩니다.',
-                            imageUrl: 'https://images.unsplash.com/photo-1519817650390-64d9b265aa30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                            link: {
-                                mobileWebUrl: 'https://cornerstone12107-wq.github.io/dramatic-epilogue/',
-                                webUrl: 'https://cornerstone12107-wq.github.io/dramatic-epilogue/',
-                            },
-                        },
-                        buttons: [
-                            {
-                                title: '나의 은혜 나누기',
+                try {
+                    if (window.Kakao && window.Kakao.isInitialized()) {
+                        window.Kakao.Share.sendDefault({
+                            objectType: 'feed',
+                            content: {
+                                title: 'Dramatic Epilogue: 너 T야?',
+                                description: '십자가를 통과한 상처는 가장 빛나는 별이 됩니다.',
+                                imageUrl: 'https://images.unsplash.com/photo-1519817650390-64d9b265aa30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
                                 link: {
                                     mobileWebUrl: 'https://cornerstone12107-wq.github.io/dramatic-epilogue/',
                                     webUrl: 'https://cornerstone12107-wq.github.io/dramatic-epilogue/',
                                 },
                             },
-                        ],
-                    });
+                            buttons: [
+                                {
+                                    title: '나의 은혜 나누기',
+                                    link: {
+                                        mobileWebUrl: 'https://cornerstone12107-wq.github.io/dramatic-epilogue/',
+                                        webUrl: 'https://cornerstone12107-wq.github.io/dramatic-epilogue/',
+                                    },
+                                },
+                            ],
+                        });
+                    } else {
+                        alert('카카오톡 시스템이 아직 로딩되지 않았거나 설정 오류입니다. 페이지를 한번 새로고침해주세요!');
+                    }
+                } catch (e) {
+                    alert('카카오톡 공유가 막혔습니다. 도메인(cornerstone12107-wq.github.io) 등록이 안 되었거나 오타가 있습니다!\n\n에러 메시지: ' + e.message);
                 }
             };
 
