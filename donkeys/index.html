@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>드라마틱 에필로그 - 데자뷰 : 두 마리의 나귀</title>
+    <meta name="description" content="10대 청소년을 위한 인터랙티브 설교 리와인드 – 종려주일 특집">
+    <meta property="og:title" content="드라마틱 에필로그 – 데자뷰 : 두 마리의 나귀">
+    <meta property="og:description" content="웅장한 백마가 아닌, 볼품없는 나귀를 타신 이유. 종려주일 설교 리와인드">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body class="dark-mode no-scroll">
+
+    <!-- Cursor Glow -->
+    <div class="cursor-glow"></div>
+
+    <!-- BGM -->
+    <audio id="bgm-player" src="bgm/bgm.mp3" loop></audio>
+
+    <!-- Mute Button -->
+    <button class="mute-btn" id="btn-mute">🔊</button>
+
+    <!-- =================== -->
+    <!-- App Container       -->
+    <!-- =================== -->
+    <div id="app-container">
+
+        <!-- =========================================== -->
+        <!-- SLIDE 0: INTRO COVER                        -->
+        <!-- =========================================== -->
+        <div id="slide0" class="slide intro-cover active" style="background-image: url('images/슬라이드69.jpeg'); background-size: cover; background-position: center;">
+            <div class="aurora-bg" style="background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.55), transparent 80%);"></div>
+            <div class="intro-content">
+                <p class="sub-title">10대 청소년을 위한 설교 리와인드</p>
+                <h1 class="main-title">
+                    <span class="word">드라마틱</span><br>
+                    <span class="word">에필로그</span>
+                </h1>
+                <p class="episode-title">Ep. 데자뷰 : 두 마리의 나귀</p>
+                <div style="margin-top:2rem;">
+                    <button id="btn-start-experience" class="start-btn pulse-glow">시작하기 →</button>
+                    <p style="margin-top:1rem; font-size:0.85rem; color:#888;">사운드를 켜고 감상해주세요</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================== -->
+        <!-- SLIDE 1: 멘탈 슬라이더 (인트로 공감)         -->
+        <!-- =========================================== -->
+        <div id="slide1" class="slide hidden">
+            <div class="image-area" style="background:#111;"></div>
+            <div class="ui-area">
+                <p class="hint-text text-center mb-sm">지금 이 순간, 내 상태는?</p>
+                <div class="slider-labels">
+                    <span>지쳐있어요 😪</span>
+                    <span>괜찮아요! 🌸</span>
+                </div>
+                <input type="range" id="mentalSlider" class="spotify-slider" min="0" max="100" value="50">
+                <p class="guide-text text-center mt-sm">슬라이더를 움직이면 다음으로 넘어가요</p>
+                <button id="btn-next-1" class="next-btn mt-md hidden">다음 →</button>
+            </div>
+        </div>
+
+        <!-- =========================================== -->
+        <!-- SLIDE 2: 어둠 속의 공포 이야기 (내러티브)    -->
+        <!-- =========================================== -->
+        <div id="slide2" class="slide hidden" style="background:#0d0d0d; flex-direction:column;">
+            <div class="image-area">
+                <div class="bg-layer" style="background-image:url('images/슬라이드73.jpeg'); background-size:cover; background-position:center;"></div>
+            </div>
+            <div class="ui-area">
+                <p class="hint-text text-center mb-sm">"호산나"의 뜻을 알고 있나요?</p>
+                <button id="btn-next-2" class="next-btn">알고 싶어요 →</button>
+            </div>
+        </div>
+
+        <!-- =========================================== -->
+        <!-- SLIDE 3: 호산나의 뜻 (크로스페이드 인터랙션)  -->
+        <!-- =========================================== -->
+        <div id="slide3" class="slide hidden">
+            <div class="image-area" style="position:relative; background:#111;">
+                <div class="bg-layer" id="s3-bg1" style="background-image:url('images/슬라이드73.jpeg'); background-size:cover; background-position:center;"></div>
+                <div class="bg-layer" id="s3-bg2" style="background-image:url('images/슬라이드74.jpeg'); background-size:cover; background-position:center; opacity:0;"></div>
+            </div>
+            <div class="ui-area">
+                <p class="hint-text text-center mb-sm">
+                    무서울 때, 살고 싶을 때 터지는 외침.<br>아래 버튼을 눌러보세요.
+                </p>
+                <button id="btn-action-3" class="action-btn mb-sm">🫶 나도 살고 싶다!</button>
+                <button id="btn-next-3" class="next-btn hidden">다음 →</button>
+            </div>
+        </div>
+
+        <!-- =========================================== -->
+        <!-- SLIDE 4: 예루살렘 입성 장면 (줌 아웃)        -->
+        <!-- =========================================== -->
+        <div id="slide4" class="slide hidden">
+            <div class="image-area" style="overflow:hidden;">
+                <div class="bg-layer" id="s4-bg" style="background-image:url('images/슬라이드75.jpeg'); background-size:cover; background-position:center;"></div>
+            </div>
+            <div class="ui-area">
+                <p class="hint-text text-center mb-sm">그들이 기다렸던 왕은 누구였을까요?</p>
+                <button id="btn-action-4" class="action-btn mb-sm">🏇 왕의 입성을 보고 싶다!</button>
+                <button id="btn-next-4" class="next-btn hidden">다음 →</button>
+            </div>
+        </div>
+
+        <!-- =========================================== -->
+        <!-- SLIDE 5: 기대 vs 현실 (내러티브)             -->
+        <!-- =========================================== -->
+        <div id="slide5" class="slide hidden" style="flex-direction:column;">
+            <div class="image-area">
+                <div class="bg-layer" style="background-image:url('images/슬라이드76.jpeg'); background-size:cover; background-position:center;"></div>
+            </div>
+            <div class="ui-area">
+                <p class="hint-text text-center mb-sm">🤔 "이게 뭐야?"</p>
+                <button id="btn-next-5" class="next-btn">더 알고 싶어요 →</button>
+            </div>
+        </div>
+
+        <!-- =========================================== -->
+        <!-- SLIDE 6: 데자뷰 팝업 (인터랙션)              -->
+        <!-- =========================================== -->
+        <div id="slide6" class="slide hidden">
+            <div class="image-area">
+                <div class="bg-layer" style="background-image:url('images/슬라이드77.jpeg'); background-size:cover; background-position:center;"></div>
+                <!-- Popup -->
+                <div id="deja-popup" class="glass-popup hidden">
+                    <div class="popup-content">
+                        <p class="danger-text" style="color:#1db954; font-size:1.1rem; font-weight:900; margin-bottom:0.8rem;">💡 데자뷰 (Déjà vu)</p>
+                        <p style="color:#eee; font-size:0.95rem; line-height:1.7;">
+                            나귀 한 마리가 모리아 산으로 올라가다—<br>
+                            성경 어딘가에서 본 장면인데?<br>
+                            <strong style="color:#fff;">창세기 22장을 기억해봐요!</strong>
+                        </p>
+                        <button id="close-deja" class="next-btn mt-md" style="font-size:0.95rem; padding:0.7rem;">기억났어요! →</button>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-area">
+                <p class="hint-text text-center mb-sm">어디서 본 것 같은 느낌... 💭</p>
+                <button id="btn-action-6" class="action-btn mb-sm">💭 데자뷰 느껴보기</button>
+                <button id="btn-next-6" class="next-btn hidden">다음 →</button>
+            </div>
+        </div>
+
+        <!-- =========================================== -->
+        <!-- SLIDE 7: 창세기 아브라함 이야기 (내러티브)    -->
+        <!-- =========================================== -->
+        <div id="slide7" class="slide hidden" style="flex-direction:column;">
+            <div class="image-area">
+                <div class="bg-layer" style="background-image:url('images/슬라이드77.jpeg'); background-size:cover; background-position:center;"></div>
+            </div>
+            <div class="ui-area">
+                <p class="hint-text text-center mb-sm">창세기 22장 — 그 산 이름을 꼭 기억해주세요 ↓</p>
+                <button id="btn-next-7" class="next-btn">기억할게요 →</button>
+            </div>
+        </div>
+
+        <!-- =========================================== -->
+        <!-- SLIDE 8: 모리아 산 퀴즈                      -->
+        <!-- =========================================== -->
+        <div id="slide8" class="slide hidden">
+            <div class="image-area">
+                <div class="bg-layer" style="background-image:url('images/슬라이드81.jpeg'); background-size:cover; background-position:center;"></div>
+            </div>
+            <div class="ui-area">
+                <p class="hint-text text-center mb-sm">
+                    아버지와 아들과 나귀가 올라간 산의 이름은?
+                </p>
+                <div class="input-group mb-sm">
+                    <input type="text" id="quiz-input" class="spotify-input" placeholder="산 이름을 적어보세요">
+                    <button id="btn-action-8" class="action-btn" style="width:auto; padding:0 1.2rem;">확인!</button>
+                </div>
+                <div id="s8-answer" class="hidden" style="background:#111; border:1px solid #1db954; border-radius:12px; padding:1rem; margin-bottom:0.8rem; text-align:center;">
+                    <p style="color:#1db954; font-size:1.4rem; font-weight:900;">⛰️ 모리아 산</p>
+                    <p style="color:#ddd; font-size:0.9rem; margin-top:0.4rem;">이 산, 꼭 기억해두세요!</p>
+                </div>
+                <button id="btn-next-8" class="next-btn hidden">다음 →</button>
+            </div>
+        </div>
+
+        <!-- =========================================== -->
+        <!-- SLIDE 9: 해피엔딩 vs 침묵 (내러티브)         -->
+        <!-- =========================================== -->
+        <div id="slide9" class="slide hidden" style="flex-direction:column;">
+            <div class="image-area">
+                <div class="bg-layer" style="background-image:url('images/슬라이드77.jpeg'); background-size:cover; background-position:center; filter:brightness(0.7);"></div>
+            </div>
+            <div class="ui-area">
+                <p class="hint-text text-center mb-sm">
+                    첫 번째 나귀 → 아들이 살았습니다 ✅<br>
+                    두 번째 나귀에게도 해피엔딩이 기다릴까요?
+                </p>
+                <button id="btn-next-9" class="next-btn">다음 →</button>
+            </div>
+        </div>
+
+        <!-- =========================================== -->
+        <!-- SLIDE 10: 침묵 타이머 (유머 인터랙션 재활용)  -->
+        <!-- =========================================== -->
+        <div id="slide10" class="slide hidden">
+            <div class="image-area" style="position:relative;">
+                <div class="bg-layer" style="background-image:url('images/슬라이드89.jpeg'); background-size:cover; background-position:center; filter:brightness(0.45);"></div>
+                <div class="giant-timer" id="timer-display" style="color:#fff; text-align:center; width:100%; top:30%;">—</div>
+            </div>
+            <div class="ui-area">
+                <p class="hint-text text-center mb-sm">
+                    십자가에서 예수님이 외쳤습니다.<br>
+                    <strong style="color:#ff4757;">"나의 하나님, 어찌하여 나를 버리셨나이까!"</strong>
+                </p>
+                <p class="guide-text text-center mb-sm">아브라함 때처럼 하늘의 목소리가 들렸을까요?<br>버튼을 누르면 하늘의 응답을 들어봅니다.</p>
+                <button id="btn-action-10" class="action-btn mb-sm" style="background:#333; color:#ff4757; border:1px solid #ff4757;">하늘의 응답 듣기</button>
+                <button id="btn-next-10" class="next-btn hidden">다음 →</button>
+            </div>
+        </div>
+
+        <!-- =========================================== -->
+        <!-- SLIDE 11: 침묵 설명 (내러티브)               -->
+        <!-- =========================================== -->
+        <div id="slide11" class="slide hidden" style="flex-direction:column;">
+            <div class="image-area">
+                <div class="bg-layer" style="background-image:url('images/슬라이드89.jpeg'); background-size:cover; background-position:center; filter:brightness(0.5);"></div>
+            </div>
+            <div class="ui-area">
+                <p class="hint-text text-center mb-sm" style="color:#ff4757;">하늘은… 침묵했습니다.</p>
+                <p class="guide-text text-center mb-sm">로마서 8:32가 그 이유를 말해줍니다</p>
+                <button id="btn-next-11" class="next-btn">이유가 궁금해요 →</button>
+            </div>
+        </div>
+
+        <!-- =========================================== -->
+        <!-- SLIDE 12: 로마서 8:32 (감동 말씀)            -->
+        <!-- =========================================== -->
+        <div id="slide12" class="slide hidden">
+            <div class="image-area">
+                <div class="bg-layer" style="background-image:url('images/슬라이드91.jpeg'); background-size:cover; background-position:center;"></div>
+            </div>
+            <div class="ui-area">
+                <p class="guide-text text-center mb-sm" style="color:#aaa;">
+                    기둥에 묶인 나귀 같은 나를,<br>기어코 살려내겠다는 하나님의 마음.
+                </p>
+                <button id="btn-next-12" class="next-btn">마음에 새기기 →</button>
+            </div>
+        </div>
+
+        <!-- =========================================== -->
+        <!-- SLIDE 13: 감동적 묵상 (감정 쉼)              -->
+        <!-- =========================================== -->
+        <div id="slide13" class="slide hidden">
+            <div class="image-area">
+                <div class="bg-layer" style="background-image:url('images/슬라이드93.jpeg'); background-size:cover; background-position:center;"></div>
+            </div>
+            <div class="ui-area" style="text-align:center;">
+                <p id="s13-guide" class="hint-text mb-sm" style="font-size:1rem; line-height:1.7;">
+                    잠시 그 사랑을 묵상해 보세요.
+                </p>
+                <button id="btn-next-13" class="next-btn hidden">계속하기 →</button>
+            </div>
+        </div>
+
+        <!-- =========================================== -->
+        <!-- SLIDE 14: 스크래치 캔버스 (먹구름 지우기)    -->
+        <!-- =========================================== -->
+        <div id="slide14" class="slide hidden">
+            <div class="image-area" id="scratch-container" style="position:relative; overflow:hidden;">
+                <div class="bg-layer" style="background-image:url('images/슬라이드95.jpeg'); background-size:cover; background-position:center;"></div>
+                <canvas id="scratch-pad"></canvas>
+                <p class="scratch-guide animate-pulse">손가락으로 화면을 문질러보세요! ✋</p>
+            </div>
+            <div class="ui-area">
+                <p id="s14-guide" class="hint-text text-center mb-sm">어둠을 걷어내면 주님이 깔아주신 길이 보입니다.</p>
+                <button id="btn-next-14" class="next-btn hidden">다음 →</button>
+            </div>
+        </div>
+
+        <!-- =========================================== -->
+        <!-- SLIDE 15: 결단 작성 (나귀 선언)              -->
+        <!-- =========================================== -->
+        <div id="slide15" class="slide hidden">
+            <div class="image-area">
+                <div class="bg-layer" style="background-image:url('images/슬라이드97.jpeg'); background-size:cover; background-position:center;"></div>
+            </div>
+            <div class="ui-area">
+                <p class="hint-text text-center mb-sm">나만의 결단을 적어봐요</p>
+                <div class="acrostic-row">
+                    <div class="letter" style="color:#1db954;">나</div>
+                    <div class="input-col">
+                        <span class="guide-text-visible">나는... (예: 나는 나귀지만 주님이 타셨다)</span>
+                        <input type="text" class="acrostic-input" placeholder="직접 적어봐요">
+                    </div>
+                </div>
+                <div class="acrostic-row">
+                    <div class="letter" style="color:#f39c12;">귀</div>
+                    <div class="input-col">
+                        <span class="guide-text-visible">귀하다! (예: 귀하다 나를 택하신 주님이 계시니)</span>
+                        <input type="text" class="acrostic-input" placeholder="직접 적어봐요">
+                    </div>
+                </div>
+                <button id="btn-next-15" class="next-btn mt-md disabled">완성! →</button>
+            </div>
+        </div>
+
+        <!-- =========================================== -->
+        <!-- SLIDE 16: 에필로그 최종                      -->
+        <!-- =========================================== -->
+        <div id="slide16" class="slide hidden">
+            <div class="image-area">
+                <div class="bg-layer" style="background-image:url('images/슬라이드97.jpeg'); background-size:cover; background-position:center; filter:brightness(0.7);"></div>
+            </div>
+            <div class="ui-area scrollable-ui">
+                <p style="text-align:center; font-size:1.3rem; font-weight:900; color:#1db954; margin-bottom:0.8rem;">
+                    🫏 나는 나귀다.<br>그러나 주님 안에서 나는 귀하다!
+                </p>
+
+                <!-- 식탁 질문 -->
+                <div class="glass-box mb-md">
+                    <p class="box-title">👨‍👩‍👧 식탁 질문</p>
+                    <p class="box-desc">
+                        "내가 기둥에 묶인 나귀처럼 느껴질 때는 언제인가요?<br>
+                        주님이 그 밧줄을 풀어주신다는 것을 생각하며 나눠보아요."
+                    </p>
+                </div>
+
+                <!-- 부모 기도 -->
+                <div class="glass-box mb-md">
+                    <p class="box-title">🙏 부모님의 축복 기도</p>
+                    <p class="box-desc">
+                        "성적과 친구들의 평가 앞에 초라하게 느껴지는 우리 아이의 등 위에,
+                        만왕의 왕께서 타고 계심을 믿게 하옵소서.
+                        오늘 걷는 학교와 학원의 모든 길이 영광의 레드카펫임을 알게 하옵소서.
+                        예수님의 이름으로 기도합니다. 아멘."
+                    </p>
+                </div>
+
+                <!-- 본문 -->
+                <div class="glass-box mb-md">
+                    <p class="box-title" style="font-size:0.9rem; color:#888;">📖 오늘의 말씀 – 마태복음 21:9</p>
+                    <p class="box-desc" style="color:#ccc;">
+                        "호산나! 다윗의 자손께! 찬양받으시기를, 주님의 이름으로 오시는 분이! 호산나, 더없이 높은 곳에서!"
+                    </p>
+                </div>
+
+                <button id="btn-restart" class="next-btn" style="background:#333; color:#fff; animation:none;">↩ 처음부터 다시</button>
+            </div>
+        </div>
+
+    </div><!-- /#app-container -->
+
+    <script src="script.js"></script>
+</body>
+</html>
