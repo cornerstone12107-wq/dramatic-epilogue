@@ -1,0 +1,450 @@
+/* =============================================
+   DRAMATIC EPILOGUE — 봄 (Spring Edition)
+   요한복음 20:11-18
+   ============================================= */
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: #fdf6ee;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #3a2e28;
+}
+
+/* ---------- Scene System ---------- */
+.scene {
+  position: fixed; inset: 0;
+  display: flex; align-items: stretch; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.55s ease;
+}
+.scene.active { opacity: 1; pointer-events: all; }
+
+.scene-inner {
+  width: 100%; max-width: 480px; height: 100%;
+  display: flex; flex-direction: column; align-items: center;
+  position: relative; overflow: hidden;
+}
+
+/* scrollable scenes */
+.scroll-scene {
+  overflow-y: auto; overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 88px; /* space for fixed bottom bar */
+}
+.scroll-scene::-webkit-scrollbar { display: none; }
+.scroll-scene { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ---------- Overlays ---------- */
+.bg-image {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; z-index: 0;
+}
+.bg-image.dim { filter: brightness(0.4) saturate(0.6); }
+
+.overlay {
+  position: absolute; inset: 0; z-index: 1;
+  pointer-events: none;
+}
+.gradient-bottom {
+  background: linear-gradient(180deg,
+    rgba(253,246,238,0) 0%,
+    rgba(253,246,238,0.7) 55%,
+    rgba(253,246,238,0.97) 100%);
+}
+.gradient-top-bottom {
+  background: linear-gradient(180deg,
+    rgba(255,248,252,0.3) 0%,
+    rgba(255,250,255,0.82) 45%,
+    rgba(255,248,252,0.97) 100%);
+}
+.dark-overlay {
+  background: linear-gradient(180deg,
+    rgba(20,15,30,0) 0%,
+    rgba(20,15,30,0.6) 55%,
+    rgba(20,15,30,0.95) 100%) !important;
+}
+.spring-overlay {
+  background: linear-gradient(180deg,
+    rgba(255,240,248,0.2) 0%,
+    rgba(255,245,252,0.8) 45%,
+    rgba(255,248,252,0.97) 100%) !important;
+}
+
+/* ---------- Sound Button ---------- */
+#sound-btn {
+  position: fixed; top: 16px; right: 16px; z-index: 9999;
+  background: rgba(255,255,255,0.88); border: none; border-radius: 50%;
+  width: 44px; height: 44px; font-size: 20px; cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(8px); transition: transform 0.2s;
+}
+#sound-btn:active { transform: scale(0.9); }
+
+/* ──────────────────────────────────────────
+   LANDING (scene-0)
+────────────────────────────────────────── */
+.landing-content {
+  position: relative; z-index: 2;
+  margin-top: auto;
+  padding: 40px 32px 52px;
+  text-align: center; width: 100%;
+}
+.ep-label {
+  font-size: 12px; letter-spacing: 0.18em;
+  color: #a07c60; text-transform: uppercase;
+  margin-bottom: 8px; font-family: 'Noto Serif KR', serif;
+}
+.main-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(60px, 20vw, 88px);
+  font-weight: 700; color: #3a2e28;
+  line-height: 1.0; margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+.scripture {
+  font-size: 14px; color: #8a6a54;
+  margin-bottom: 18px; font-family: 'Noto Serif KR', serif;
+}
+.sound-hint { font-size: 13px; color: #b08860; margin-bottom: 32px; }
+
+/* ──────────────────────────────────────────
+   SLIDER (scene-1)
+────────────────────────────────────────── */
+.slider-content {
+  position: relative; z-index: 2;
+  margin-top: auto;
+  padding: 48px 32px 120px;
+  text-align: center; width: 100%;
+}
+.label {
+  font-size: 12px; letter-spacing: 0.12em;
+  color: #e8a070; text-transform: uppercase; margin-bottom: 10px;
+}
+.slider-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 21px; font-weight: 600;
+  color: #f4ede4; margin-bottom: 36px;
+}
+.slider-wrap { width: 100%; max-width: 310px; margin: 0 auto 14px; }
+.slider-labels {
+  display: flex; justify-content: space-between;
+  font-size: 13px; color: #c8b8a8; margin-bottom: 20px;
+  line-height: 1.6; text-align: center;
+}
+input[type="range"] {
+  -webkit-appearance: none; width: 100%; height: 6px;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #88aaee 0%, #ffb3c6 100%);
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 32px; height: 32px;
+  border-radius: 50%; background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2); cursor: pointer;
+  border: 3px solid #e8a0b0;
+}
+.slider-hint { font-size: 12px; color: #b0989a; margin-top: 14px; }
+
+/* ──────────────────────────────────────────
+   IMAGE CARD
+────────────────────────────────────────── */
+.img-card {
+  width: 100%; flex-shrink: 0; background: #f0e8da;
+  display: flex; align-items: center; justify-content: center;
+}
+.img-card img {
+  width: 100%; height: 280px;
+  object-fit: contain; display: block;
+}
+@media (min-height: 780px) { .img-card img { height: 310px; } }
+@media (max-height: 640px) { .img-card img { height: 210px; } }
+
+/* DUAL IMAGE (두 이미지 나란히) */
+.img-dual {
+  width: 100%; display: flex; flex-shrink: 0;
+  gap: 3px; background: #ddd0c0;
+}
+.img-dual-item {
+  flex: 1; overflow: hidden; background: #f0e8da;
+  display: flex; align-items: center; justify-content: center;
+}
+.img-dual-item img {
+  width: 100%; height: 230px;
+  object-fit: contain; display: block;
+}
+.img-dual-item:nth-child(1) img {
+  object-position: right center;
+}
+.img-dual-item:nth-child(2) img {
+  object-position: left center;
+}
+@media (min-height: 780px) { .img-dual-item img { height: 260px; } }
+@media (max-height: 640px) { .img-dual-item img { height: 170px; } }
+
+
+
+/* ──────────────────────────────────────────
+   TEXT BLOCK
+────────────────────────────────────────── */
+.text-block {
+  width: 100%; padding: 24px 24px 16px; text-align: left;
+}
+.center-block { text-align: center; padding-top: 60px; }
+
+.tag {
+  display: inline-block; font-size: 11px;
+  letter-spacing: 0.1em; color: #c07840;
+  background: #fdf0e6; border: 1px solid #e8c8a0;
+  border-radius: 20px; padding: 4px 12px; margin-bottom: 14px;
+}
+.spring-tag { color: #c04070; background: #fff0f4; border-color: #f0c0d0; }
+.dark-tag { color: #9898cc; background: rgba(80,70,140,0.2); border-color: rgba(120,110,180,0.3); }
+
+.scene-h {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 22px; font-weight: 700;
+  color: #3a2e28; line-height: 1.5; margin-bottom: 16px;
+}
+.dark-h { color: #e8e0f0; }
+
+.scene-p {
+  font-size: 15px; line-height: 1.9;
+  color: #5a4a3a; margin-bottom: 14px;
+}
+.scene-p strong { color: #b84060; }
+.scene-p.dark-p { color: #b0a8c8; }
+.scene-p.dark-p strong { color: #e0c0f0; }
+.em-text { font-style: italic; color: #8a7a6a !important; }
+
+/* ──────────────────────────────────────────
+   HIGHLIGHT BOX
+────────────────────────────────────────── */
+.highlight-box {
+  background: #f5f0ff;
+  border-left: 4px solid #8870cc;
+  border-radius: 10px;
+  padding: 18px 18px;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 16px; line-height: 1.9;
+  color: #4a3870; margin: 14px 0;
+}
+.highlight-box strong { color: #7050d0; }
+
+.spring-highlight {
+  background: #fff0f4;
+  border-left-color: #e06080;
+  color: #6a2040;
+}
+.spring-highlight strong { color: #c04060; }
+
+.dark-highlight {
+  background: rgba(60,50,100,0.4);
+  border-left-color: #8870cc;
+  color: #d0c8f0;
+}
+.dark-highlight strong { color: #e0c8ff; }
+
+/* ──────────────────────────────────────────
+   NAME CALL — "마리아야!"
+────────────────────────────────────────── */
+.name-call {
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(52px, 16vw, 76px);
+  font-weight: 700; color: #d44a70;
+  text-align: center; letter-spacing: -0.02em;
+  line-height: 1.1; margin: 16px 0 20px;
+  animation: pulse-name 2.2s ease-in-out infinite;
+}
+@keyframes pulse-name {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+/* ──────────────────────────────────────────
+   DARK / SPRING BACKGROUNDS
+────────────────────────────────────────── */
+.dark-bg { background: #1a1520; }
+.spring-bg { background: #fff5f8; }
+
+/* ──────────────────────────────────────────
+   DECISION + 결단 (scene-16)
+────────────────────────────────────────── */
+.big-emoji {
+  font-size: 56px; display: block; margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.decision-main {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 24px; font-weight: 700;
+  color: #3a2e28; line-height: 1.7; margin-bottom: 14px;
+}
+.decision-sub {
+  font-size: 14px; color: #9a8070;
+  line-height: 1.8; margin-bottom: 32px;
+}
+
+/* ──────────────────────────────────────────
+   TABLE QUESTION
+────────────────────────────────────────── */
+.table-q {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 17px; color: #4a3a2a;
+  line-height: 2.0;
+  background: #fdf5ec;
+  border-left: 4px solid #e8a070;
+  border-radius: 10px;
+  padding: 20px 20px; margin-top: 14px;
+}
+
+/* ──────────────────────────────────────────
+   PRAYER BOX
+────────────────────────────────────────── */
+.prayer-box {
+  font-size: 15px; color: #5a4a3a;
+  line-height: 2.1; font-style: italic;
+  background: #f8f4f0;
+  border-radius: 12px; padding: 24px 20px; margin-top: 14px;
+}
+
+/* ──────────────────────────────────────────
+   ENDING (scene-19)
+────────────────────────────────────────── */
+.ending-content {
+  position: relative; z-index: 2;
+  margin-top: auto;
+  padding: 44px 32px 52px;
+  text-align: center; width: 100%;
+}
+.ending-label {
+  font-size: 12px; letter-spacing: 0.1em;
+  color: #c8956a; text-transform: uppercase; margin-bottom: 20px;
+}
+.ending-verse {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 18px; font-weight: 400;
+  color: #3a2e28; line-height: 2.0; margin-bottom: 24px;
+}
+.ending-verse em { font-size: 14px; color: #9a8070; }
+.ending-tagline {
+  font-size: 16px; color: #3a2e28;
+  line-height: 1.9; margin-bottom: 32px;
+}
+.ending-tagline strong { color: #c04070; }
+
+.ending-bg {
+  object-fit: contain !important;
+  background: #fff5f8;
+}
+
+.bgm-credit {
+  font-size: 12px; color: #b898a0;
+  margin-top: 16px; margin-bottom: 70px; text-align: center;
+}
+.bgm-credit a {
+  color: #a07880; text-decoration: underline;
+}
+
+/* ──────────────────────────────────────────
+   BOTTOM BAR
+────────────────────────────────────────── */
+.bottom-bar {
+  position: fixed; bottom: 0;
+  left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 480px;
+  padding: 10px 20px 28px;
+  background: linear-gradient(to top,
+    rgba(253,246,238,1) 70%, rgba(253,246,238,0));
+  z-index: 100;
+}
+.nav-buttons {
+  display: flex; gap: 10px; width: 100%;
+}
+.dark-bar {
+  background: linear-gradient(to top,
+    rgba(26,21,32,1) 70%, transparent) !important;
+}
+.spring-bar {
+  background: linear-gradient(to top,
+    rgba(255,245,248,1) 70%, transparent) !important;
+}
+
+/* ──────────────────────────────────────────
+   BUTTONS
+────────────────────────────────────────── */
+.btn-primary {
+  display: inline-block;
+  background: #3a8c60; color: white; border: none;
+  border-radius: 50px; padding: 16px 40px;
+  font-size: 16px; font-weight: 600;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer; letter-spacing: 0.03em;
+  box-shadow: 0 4px 20px rgba(58,140,96,0.35);
+  transition: transform 0.2s;
+}
+.btn-primary:active { transform: scale(0.96); }
+
+.btn-next {
+  flex: 1; display: block; width: 100%;
+  background: white; color: #3a2e28;
+  border: 1.5px solid #ddd0c8; border-radius: 50px;
+  padding: 16px; font-size: 16px; font-weight: 600;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer; letter-spacing: 0.03em;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-next:active { transform: scale(0.97); background: #f8f0e8; }
+
+.btn-prev {
+  flex: 1; display: block; width: 100%;
+  background: transparent; color: #8a7a6a;
+  border: 1.5px solid #e0d4cc; border-radius: 50px;
+  padding: 16px; font-size: 15px; font-weight: 600;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer; letter-spacing: 0.03em;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-prev:active { transform: scale(0.97); background: #f8f0e8; }
+
+.spring-btn {
+  background: #d44a70 !important;
+  color: white !important;
+  border-color: #d44a70 !important;
+  box-shadow: 0 4px 18px rgba(212,74,112,0.3);
+}
+.spring-btn-prev {
+  border-color: #e8b0c0 !important; color: #b4607a !important; background: transparent !important;
+}
+.dark-btn {
+  background: #5545aa !important;
+  color: white !important;
+  border-color: #5545aa !important;
+}
+.dark-btn-prev {
+  border-color: #5545aa !important; color: #b0a8c8 !important; background: transparent !important;
+}
+
+/* ──────────────────────────────────────────
+   KAKAO BUTTON
+────────────────────────────────────────── */
+.btn-kakao {
+  display: flex; align-items: center;
+  justify-content: center; gap: 10px;
+  width: 100%; max-width: 340px; margin: 12px auto;
+  background: #FFE300; color: #3C1E1E; border: none;
+  border-radius: 50px; padding: 16px 24px;
+  font-size: 15px; font-weight: 700;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer; letter-spacing: 0.03em;
+  box-shadow: 0 4px 18px rgba(255,227,0,0.4);
+  transition: transform 0.15s;
+}
+.btn-kakao:active { transform: scale(0.97); }

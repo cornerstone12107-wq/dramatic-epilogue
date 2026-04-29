@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>드라마틱 에필로그 — 케노시스</title>
+  <meta name="description" content="우주의 왕이 목숨 걸고 나를 증명해 내셨는데, 내가 더 억지 부려 증명할 게 무엇이겠습니까. 빌립보서 2:5-11" />
+
+  <!-- OG (카카오 공유용) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="드라마틱 에필로그 — 케노시스" />
+  <meta property="og:description" content="가장 깊은 바닥까지 자기를 비우신 예수님의 완벽한 '힘 빼기'" />
+  <meta property="og:image" content="https://cornerstone12107-wq.github.io/dramatic-epilogue/kenosis/images/0.jpeg?v=new2" />
+  <meta property="og:url" content="https://cornerstone12107-wq.github.io/dramatic-epilogue/kenosis/" />
+
+  <!-- Kakao SDK -->
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"
+    integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4"
+    crossorigin="anonymous"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- BGM -->
+  <audio id="bgm" src="bgm/bgm.mp3" loop></audio>
+  <button id="sound-btn" aria-label="소리 켜기/끄기" onclick="toggleSound()">🔇</button>
+
+  <!-- SCENE 0 : 표지 -->
+  <section class="scene active" id="scene-0">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/0.jpeg?v=new" alt="표지" onerror="this.src='https://placehold.co/800x800/1a1a1a/D4AF37?text=Kenosis'" /></div>
+      <div class="text-block dark-text" style="display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; min-height:45vh; padding-top:2rem;">
+        <p class="ep-label" style="color:#D4AF37; margin-bottom:1rem; font-weight:600; letter-spacing:2px; font-size:0.9rem;">드라마틱 에필로그</p>
+        <h1 class="main-title" style="font-size:3rem; margin-bottom:1rem; color:#fff;">케노시스</h1>
+        <p class="scripture" style="color:#c0c0c0; margin-bottom:2rem; font-size:1.1rem;">빌립보서 2:5–11</p>
+        <p class="sound-hint" style="color:#888; font-size:0.85rem; margin-bottom:1.5rem;">🎵 사운드를 켜고 감상해주세요</p>
+        <button class="btn-primary" onclick="startApp()" style="background:#D4AF37; color:#000; box-shadow: 0 4px 15px rgba(212,175,55,0.4); padding:16px 45px; border-radius:30px; border:none; font-weight:700; font-size:1.1rem;">시작하기 →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 1 : 지워지지 않는 소리 -->
+  <section class="scene" id="scene-1">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/1.jpeg?v=new" alt="노이즈 캔슬링" onerror="this.src='https://placehold.co/800x800/1a1a1a/D4AF37?text=Noise+Canceling'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag">🎧 지워지지 않는 소리</span>
+        <h3 class="scene-h dark-h">"최고급 헤드폰으로도<br />막을 수 없는 소음"</h3>
+        <p class="scene-p dark-p">
+          아무리 비싸고 성능 좋은 노이즈 캔슬링 헤드폰을 써도,<br />
+          결코 지워지지 않는 소리가 있습니다.<br />
+          바로 내 머릿속에서 울리는 <strong>'부정적인 소리'</strong>예요.
+        </p>
+        <div class="highlight-box dark-highlight">
+          '시험 성적 떨어지면 어떡하지?'<br />
+          '친구들이 나를 무시하면 어떡하지?'
+        </div>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(1)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(1)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 2 : 잔뜩 들어간 힘 -->
+  <section class="scene" id="scene-2">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/2.jpeg?v=new" alt="잔뜩 들어간 힘" onerror="this.src='https://placehold.co/800x800/1a1a1a/D4AF37?text=Tension'" /></div>
+      <div class="text-block dark-text" style="color:#d9d9d9;">
+        <span class="tag dark-tag">💪 잔뜩 들어간 힘</span>
+        <h3 class="scene-h dark-h">"무시당하지 않으려고<br />넣은 어깨 뽕"</h3>
+        <p class="scene-p dark-p">
+          끊임없이 나를 증명해야 한다는 불안감.<br />
+          남들보다 뒤처지면 끝장이라는 두려움.<br />
+          이 소음이 들릴수록 우리는 본능적으로 온몸에 힘을 빡 주게 됩니다.
+        </p>
+        <p class="scene-p dark-p em-text" style="color:#ff8080;">
+          까치발을 든 것처럼, 어깨에 뽕을 넣은 것처럼<br />잔뜩 긴장한 채로 뻣뻣하게 하루를 버티는 거죠.
+        </p>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(2)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(2)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 3 : 긴장한 도시 빌립보 -->
+  <section class="scene" id="scene-3">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/3.jpeg?v=new" alt="긴장한 도시 빌립보" onerror="this.src='https://placehold.co/800x800/1a1a1a/D4AF37?text=Philippi'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag" style="background:rgba(200,50,50,0.2); color:#ff6666;">🏛 작은 로마, 빌립보</span>
+        <h3 class="scene-h dark-h">"2,000년 전,<br />가장 뻣뻣했던 도시"</h3>
+        <p class="scene-p dark-p">
+          로마 퇴역 군인들이 집단으로 이주해 살았던 도시 빌립보.<br />
+          그들의 최고 자랑은 가슴에 달린 훈장, <strong>'로마 시민권'</strong>이었습니다.
+        </p>
+        <p class="scene-p dark-p">
+          시민권 하나로 사람의 등급이 철저하게 매겨졌기에,<br />
+          서로 계급을 비교하며 늘 경계하고, 만만해 보이지 않으려<br />
+          아주 뻣뻣하게 힘을 주고 살아야만 했습니다.
+        </p>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(3)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(3)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 4 : 교회 안의 기싸움 -->
+  <section class="scene" id="scene-4">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/4.jpeg?v=new" alt="교회 안의 기싸움" onerror="this.src='https://placehold.co/800x800/f0f0f0/D4AF37?text=Church+Conflict'" /></div>
+      <div class="text-block">
+        <span class="tag">⚡ 기싸움</span>
+        <h3 class="scene-h">"서로 지지 않으려는<br />유오디아와 순두게"</h3>
+        <p class="scene-p">
+          비극은 교회 안에서도 똑같이 벌어졌습니다.<br />
+          무거운 어깨를 풀고 숨을 쉬어야 할 교회에서도,<br />
+          리더였던 유오디아와 순두게는 세상처럼 기싸움을 했습니다.
+        </p>
+        <div class="highlight-box">
+          "내 방식이 맞아! 내가 더 헌신했어!"<br />
+          양보하면 무시당하는 것 같아 끝까지 억지를 부린 것입니다.
+        </div>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(4)">← 이전</button><button
+          class="btn-next" onclick="goNext(4)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 5 : 바울의 처방전 -->
+  <section class="scene" id="scene-5">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/5.jpeg?v=new" alt="바울의 찬송시" onerror="this.src='https://placehold.co/800x800/f0f0f0/D4AF37?text=Paul\\'s+Letter'" /></div>
+      <div class="text-block">
+        <span class="tag" style="background:rgba(212,175,55,0.2); color:#b58900;">📜 바울의 처방전</span>
+        <h3 class="scene-h">"가장 높으신 왕은<br />억지를 부리지 않으셨네"</h3>
+        <p class="scene-p">
+          감옥에 있던 바울은 이 답답한 소식을 듣고 편지를 보냅니다.<br />
+          혼을 내는 대신, 초대 교회가 불렀던 <strong>찬송시</strong>를 적어 보냈죠.
+        </p>
+        <p class="scene-p em-text" style="color:#a87a00;">
+          "예수님은 하나님의 모습을 지니셨지만<br />하나님과 동등하게 되시는 것에 억지를 쓰지 않으셨네."
+        </p>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(5)">← 이전</button><button
+          class="btn-next" onclick="goNext(5)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 6 : 아가별의 로봇 연기 -->
+  <section class="scene" id="scene-6">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/6.jpeg?v=new" alt="아가별의 로봇 연기" onerror="this.src='https://placehold.co/800x800/f0f0f0/D4AF37?text=Robot+Acting'" /></div>
+      <div class="text-block">
+        <span class="tag">🤖 억지스러움</span>
+        <h3 class="scene-h">"긴장하면 누구나<br />부자연스러워집니다"</h3>
+        <p class="scene-p">
+          마음이 불안할 때, 내 자리를 뺏길까 봐 겁날 때,<br />
+          사람들은 방어하느라 온몸에 힘이 들어가고<br />
+          자연스러움을 잃은 채 억지스러운 모습이 나옵니다.
+        </p>
+        <p class="scene-p">
+          하지만 온 우주를 다스리는 진짜 왕, 예수님은<br />
+          자신의 특권을 방어하겠다고 뻣뻣하게 목소리를 높이지 않으셨습니다.
+        </p>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(6)">← 이전</button><button
+          class="btn-next" onclick="goNext(6)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 7 : 완벽한 힘 빼기, 케노시스 -->
+  <section class="scene" id="scene-7">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/7.jpeg?v=new" alt="케노시스" onerror="this.src='https://placehold.co/800x800/1a1a1a/D4AF37?text=Kenosis'" /></div>
+      <div class="text-block dark-text" style="color:#d9d9d9;">
+        <span class="tag dark-tag" style="background:rgba(212,175,55,0.2); color:#D4AF37;">💧 비워냄</span>
+        <h3 class="scene-h dark-h">"자신을 비우셨다,<br />케노시스(Kenosis)"</h3>
+        <p class="scene-p dark-p">
+          예수님은 정반대의 선택을 하셨습니다.<br />
+          '케노시스'는 그릇 안에 있는 내용물을 밑바닥까지<br />
+          단 한 방울도 남김없이 박박 긁어 다 쏟아버렸다는 뜻입니다.
+        </p>
+        <div class="highlight-box dark-highlight">
+          자신이 가진 하나님이라는 절대적인 특권과 권리에서<br />
+          <strong>100% 완벽하게 힘을 빼셨다</strong>는 의미입니다.
+        </div>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(7)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(7)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 8 : 스포츠의 핵심 -->
+  <section class="scene" id="scene-8">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/8.jpeg?v=new" alt="힘을 빼세요" onerror="this.src='https://placehold.co/800x800/1a1a1a/D4AF37?text=Relax'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag">🏌️ 스포츠의 핵심</span>
+        <h3 class="scene-h dark-h">"힘을 빼야 진짜<br />능력이 나옵니다"</h3>
+        <p class="scene-p dark-p">
+          골프, 야구, 태권도... 모든 스포츠의 첫 번째 가르침은<br />
+          "어깨에 잔뜩 들어간 힘을 빼세요" 입니다.<br />
+          하지만 위협 앞에서 힘을 빼는 건 손해를 볼까 봐 무서운 일이죠.
+        </p>
+        <p class="scene-p dark-p em-text" style="color:#ff8080;">
+          본능적으로 나를 보호하려 힘을 주고 굳어버리게 됩니다.
+        </p>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(8)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(8)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 9 : 십자가의 힘 빼기 -->
+  <section class="scene" id="scene-9">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/9.jpeg?v=new" alt="십자가의 힘 빼기" onerror="this.src='https://placehold.co/800x800/1a1a1a/D4AF37?text=The+Cross'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag">✝️ 십자가</span>
+        <h3 class="scene-h dark-h">"가장 비참한 바닥까지<br />내려간 사랑"</h3>
+        <p class="scene-p dark-p">
+          예수님 앞에는 야구공이나 주먹이 아니라,<br />
+          가장 끔찍하고 고통스러운 사형 틀 <strong>'십자가'</strong>가 있었습니다.
+        </p>
+        <p class="scene-p dark-p">
+          그러나 죄의 우물에서 허우적대는 우리를 살려내시려고,<br />
+          하늘의 특권이라는 방어막을 완전히 내려놓고<br />
+          자신의 가장 소중한 생명까지 힘을 빼고 내던지셨습니다.
+        </p>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(9)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(9)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 10 : 우주적인 구원 사건 -->
+  <section class="scene" id="scene-10">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/10.jpeg?v=new" alt="부활과 승리" onerror="this.src='https://placehold.co/800x800/f0f0f0/D4AF37?text=Resurrection'" /></div>
+      <div class="text-block">
+        <span class="tag" style="background:rgba(215,90,0,0.15); color:#d75a00;">🔥 가장 위대한 승리</span>
+        <h3 class="scene-h">"생명의 힘을 뺀 자리에서<br />시작된 기적"</h3>
+        <p class="scene-p">
+          예수님이 모든 힘을 다 빼고 죽으셨던 바로 그 자리에서,<br />
+          마침내 하나님이 일하기 시작하셨습니다!
+        </p>
+        <div class="highlight-box" style="border-color:#d75a00;">
+          사망의 권세를 깨뜨리고 영원히 다시 살리셔서,<br />
+          가장 높은 곳으로 수직 상승시키셨습니다.<br />
+          모든 존재가 그 이름 앞에 무릎을 꿇게 하셨죠.
+        </div>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(10)">← 이전</button><button
+          class="btn-next" onclick="goNext(10)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 11 : 은혜로 초대받은 우리 -->
+  <section class="scene" id="scene-11">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/11.jpeg?v=new" alt="은혜의 초대" onerror="this.src='https://placehold.co/800x800/f0f0f0/D4AF37?text=Grace'" /></div>
+      <div class="text-block">
+        <span class="tag" style="background:rgba(212,175,55,0.2); color:#b58900;">👑 이미 다 이겨 놓은 싸움</span>
+        <h3 class="scene-h">"나의 승리로<br />덮어씌워지는 복음"</h3>
+        <p class="scene-p">
+          예수님이 십자가와 부활로 이루어내신 완벽한 승리는,<br />
+          우리가 예수님을 믿는 순간 '나의 승리'로 덮어씌워집니다!
+        </p>
+        <p class="scene-p">
+          우리는 내 힘으로 아등바등 싸워서 이겨야 하는 사람들이 아니라,<br />
+          예수님이 이미 다 이겨 놓으신 그 완벽한 승리에<br />
+          그저 은혜로 값없이 초대받은 사람들입니다.
+        </p>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(11)">← 이전</button><button
+          class="btn-next" onclick="goNext(11)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 12 : 10초의 멈춤 -->
+  <section class="scene" id="scene-12">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/12.jpeg?v=new" alt="10초의 멈춤" onerror="this.src='https://placehold.co/800x800/f0f0f0/D4AF37?text=10+Seconds+Pause'" /></div>
+      <div class="text-block">
+        <span class="tag" style="background:rgba(212,175,55,0.2); color:#b58900;">🛑 결단</span>
+        <h3 class="scene-h">"불안할 때 딱 10초만<br />멈춰보세요"</h3>
+        <p class="scene-p">
+          다시 성적으로 깎아내리고 무시하는 세상 속에서 불안해질 때,<br />
+          본능적으로 힘을 주고 억지를 부리려는 그 순간.<br />
+          속으로 딱 10초만 멈춰 서서 이렇게 외쳐봅시다.
+        </p>
+        <p class="scene-p em-text" style="color:#a87a00; font-size:1.05rem;">
+          "우주의 왕이 목숨 걸고 나를 증명해 내셨는데,<br />내가 더 억지 부려 증명할 게 뭐가 있겠습니까!"
+        </p>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(12)">← 이전</button><button
+          class="btn-next" onclick="goNext(12)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 13 : 식탁 기도 -->
+  <section class="scene" id="scene-13">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="text-block dark-text" style="margin-top:20px;">
+        <h3 class="scene-h dark-h text-center" style="margin-bottom:1.5rem;color:#D4AF37;">🍽 식탁에서 나누기</h3>
+        <div class="qa-box" style="background:#1f1f1f;border:1px solid rgba(212,175,55,0.5);padding:1.5rem;border-radius:16px;margin-bottom:1.5rem;">
+          <p class="scene-p dark-p" style="margin-bottom:0.8rem;font-weight:700;font-size:1.1rem;color:#D4AF37;">
+            💬 이번 주 가족 식탁 질문
+          </p>
+          <p class="scene-p dark-p" style="font-size:0.95rem;line-height:1.7;color:#e0e0e0;">
+            "최근 내가 무시당하지 않으려고 잔뜩 긴장해서 억지를 부렸던 적은 언제인가요?<br/>나를 위해 생명까지 다 내어주신 예수님의 완벽한 사랑(케노시스)을 떠올리며 서로를 격려해 보아요."
+          </p>
+        </div>
+        <div class="qa-box" style="background:#1f1f1f;border:1px solid rgba(212,175,55,0.5);padding:1.5rem;border-radius:16px;">
+          <p class="scene-p dark-p" style="margin-bottom:0.8rem;font-weight:700;font-size:1.1rem;color:#D4AF37;">
+            🙏 부모님의 축복 기도
+          </p>
+          <p class="scene-p dark-p" style="font-size:0.95rem;line-height:1.7;color:#e0e0e0;">
+            "사랑하는 하나님, 우리 아이가 세상의 평가 속에서 억지로 자신을 증명하느라 힘들어하지 않게 하옵소서.<br/>우주의 왕이신 예수님이 다 이루어 놓으신 십자가 승리를 믿고, 잔뜩 들어간 어깨의 힘을 뺀 채 참된 평안과 자유를 누리는 귀한 자녀로 살아가게 하옵소서. 예수님의 이름으로 기도합니다. 아멘."
+          </p>
+        </div>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(13)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(13)">종료 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 14 : 엔딩 -->
+  <section class="scene" id="scene-14">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/ending.jpeg?v=new" alt="엔딩" onerror="this.src='https://placehold.co/800x800/1a1a1a/D4AF37?text=King\\'s+Love'" /></div>
+      <div class="text-block dark-text" style="text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; padding-top:2rem;">
+        <h2 class="slider-title" style="color:#D4AF37; font-size:2.5rem; margin-bottom:1.5rem; font-family:'Noto Serif KR', serif;">케노시스</h2>
+        <p class="scene-p text-white" style="font-size:1.1rem; line-height:1.7; margin-bottom:2.5rem; color:#d9d9d9; word-break:keep-all;">
+          어깨에 잔뜩 힘이 들어간 일상을<br />완전히 무장해제 시켜주는 강력한 은혜.<br /><br />
+          나를 위해 가장 낮은 곳까지 비우신<br />위대한 <strong style="color:#D4AF37;">왕의 사랑</strong>에 기대어 사세요.
+        </p>
+        <button class="btn-kakao" onclick="shareKakao()" style="background:#FEE500; color:#000; padding:14px 26px; border-radius:30px; font-weight:700; border:none; display:flex; align-items:center; margin:0 auto; gap:8px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3C6.477 3 2 6.582 2 11c0 2.924 1.733 5.5 4.35 7.072L5.5 21l3.6-2.1A11.2 11.2 0 0012 19c5.523 0 10-3.582 10-8s-4.477-8-10-8z"/>
+          </svg>
+          카카오톡으로 공유하기
+        </button>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons">
+        <button class="btn-prev dark-btn-prev" onclick="goPrev(14)">← 이전</button>
+        <button class="btn-next dark-btn" onclick="showScene(0)" style="background:rgba(212,175,55,0.15); color:#D4AF37; border:1px solid #D4AF37;">처음으로 ↺</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js?v=6"></script>
+</body>
+
+</html>
