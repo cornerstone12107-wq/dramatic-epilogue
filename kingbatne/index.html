@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>드라마틱 에필로그 — 몹시 킹받네</title>
+  <meta name="description" content="세상이 우리를 채점할 때, 세상이 버린 아이들을 무릎 꿇고 안아주신 진짜 킹, 예수님." />
+
+  <!-- OG (카카오 공유용) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="드라마틱 에필로그 — 몹시 킹받네" />
+  <meta property="og:description" content="자격 심사 없이 빈손으로 나아가도 안아주시는 진짜 왕의 사랑" />
+  <meta property="og:image" content="https://cornerstone12107-wq.github.io/dramatic-epilogue/kingbatne/images/0.jpeg?v=new" />
+  <meta property="og:url" content="https://cornerstone12107-wq.github.io/dramatic-epilogue/kingbatne/" />
+
+  <!-- Kakao SDK -->
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"
+    integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4"
+    crossorigin="anonymous"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- BGM -->
+  <audio id="bgm" src="bgm/bgm.mp3" loop></audio>
+  <button id="sound-btn" aria-label="소리 켜기/끄기" onclick="toggleSound()">🔇</button>
+
+  <!-- SCENE 0 : 표지 -->
+  <section class="scene active" id="scene-0">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/0.jpeg" alt="표지" onerror="this.src='https://placehold.co/800x800/1a1a1a/FFD700?text=Kingbatne'" /></div>
+      <div class="text-block dark-text" style="display:flex; flex-direction:column; justify-content:flex-start; align-items:center; text-align:center; padding-top:1.5rem;">
+        <p class="ep-label" style="color:#FFD700; margin-bottom:0.8rem; font-weight:600; letter-spacing:2px; font-size:1.1rem;">드라마틱 에필로그</p>
+        <h1 class="main-title" style="font-size:3.5rem; margin-bottom:0.8rem; color:#fff;">몹시 킹받네</h1>
+        <p class="scripture" style="color:#c0c0c0; margin-bottom:1.5rem; font-size:1.2rem;">마가복음 10:13–16</p>
+        
+        <div class="scripture-text" style="color:#a0a0a0; font-size:1.05rem; line-height:1.7; margin-bottom:2rem; word-break:keep-all; padding:0 15px; text-align:center;">
+          13 사람들이 어린이들을 예수님께 데려오고 있었다.<br />
+          예수님이 어루만져 주시도록 하려는 것이었다.<br />
+          그런데 제자들은 그 사람들을 꾸짖었다.<br /><br />
+          
+          14 예수님이 보시고는 몹시 화를 내셨다.<br />
+          그리고 제자들에게 말씀하셨다.<br />
+          “어린이들이 나한테 오도록 그냥 두세요! 막지 마세요!<br />
+          하나님 나라는 이런 사람들의 것이니까요.<br /><br />
+          
+          15 아멘 그대들에게 말합니다.<br />
+          하나님 나라를 어린이처럼 받아들이지 않는 사람은<br />
+          누구라도 그리로 절대 들어가지 못할 것입니다.”<br /><br />
+          
+          16 그러고는 어린이들을 안아 주시고<br />
+          그들에게 두 손을 얹어 복을 빌어 주셨다.
+        </div>
+
+        <p class="sound-hint" style="color:#888; font-size:0.95rem; margin-bottom:1.2rem;">🎵 사운드를 켜고 감상해주세요</p>
+        <button class="btn-primary" onclick="startApp()" style="background:#FFD700; color:#000; box-shadow: 0 4px 15px rgba(255,215,0,0.4); padding:16px 45px; border-radius:30px; border:none; font-size:1.2rem;">시작하기 →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 1 : 카타르 월드컵과 킹우의 수 -->
+  <section class="scene" id="scene-1">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/1.jpeg" alt="월드컵과 킹우의 수" onerror="this.src='https://placehold.co/800x800/1a1a1a/FFD700?text=Worldcup'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag">⚽ 2022 카타르 월드컵</span>
+        <h3 class="scene-h dark-h">"이겼는데 탈락?<br />머리 터지는 킹우의 수"</h3>
+        <p class="scene-p dark-p">
+          포르투갈전에서 황희찬 선수의 극적인 역전골로 이겼지만,<br />
+          같은 시간 우루과이 대 가나 경기 결과에 따라 탈락할 수도 있었죠.
+        </p>
+        <p class="scene-p dark-p">
+          골득실, 다득점, 승자승... 온 국민이 머리가 터지게 돌렸던 계산기.<br />
+          경우의 수가 너무 열받아서 사람들은 그걸 <strong style="color:#FFD700;">'킹우의 수'</strong>라고 불렀습니다.
+        </p>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(1)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(1)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 2 : 매일 돌리는 킹우의 수 -->
+  <section class="scene" id="scene-2">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/2.jpeg" alt="학교에서의 킹우의 수" onerror="this.src='https://placehold.co/800x800/f0f0f0/FFD700?text=School'" /></div>
+      <div class="text-block">
+        <span class="tag" style="background:rgba(255,0,0,0.1); color:#ff4d4d;">😩 지긋지긋한 계산</span>
+        <h3 class="scene-h">"우리는 매일<br />킹우의 수를 돌립니다"</h3>
+        <p class="scene-p">
+          선수들은 4년에 한 번 돌리는 그 킹우의 수를 우리는 매일 돌립니다.
+        </p>
+        <div class="highlight-box" style="border-color:#ff4d4d;">
+          '수학 여기서 1점만 안 깎였어도 등급 안 떨어지는데.'<br />
+          '이 점수를 부모님한테 어떻게 포장해야 이번 주말에 살아남지?'
+        </div>
+        <p class="scene-p">
+          나한테 조금이라도 유리한 숫자를 찾느라 피가 마르는 일상.<br />
+          이런 상황 자체가 너무 킹받지 않습니까?
+        </p>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(2)">← 이전</button><button
+          class="btn-next" onclick="goNext(2)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 3 : 2,000년 전 얼음장 분위기 -->
+  <section class="scene" id="scene-3">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/3.jpeg" alt="얼음장 같은 제자들" onerror="this.src='https://placehold.co/800x800/1a1a1a/FFD700?text=Disciples'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag">❄️ 얼음장 같은 분위기</span>
+        <h3 class="scene-h dark-h">"예루살렘으로 가는<br />곤두선 길 위에서"</h3>
+        <p class="scene-p dark-p">
+          2,000년 전 유대 땅 요단강 건너편 길 위.<br />
+          제자들은 바리새인들의 함정 질문 공세에 신경이 날카로웠습니다.
+        </p>
+        <p class="scene-p dark-p">
+          게다가 예수님이 이제 예루살렘에서 왕이 되실 거라 굳게 믿고 있었죠.<br />
+          <strong style="color:#FFD700;">'지금 우리 스승님, 왕이 되시러 가는 거야. 잡상인 금지, 무단침입 절대 금지!'</strong>
+        </p>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(3)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(3)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 4 : 아이들을 대하는 1세기의 태도 -->
+  <section class="scene" id="scene-4">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/4.jpeg" alt="무시받는 아이들" onerror="this.src='https://placehold.co/800x800/f0f0f0/FFD700?text=Children'" /></div>
+      <div class="text-block">
+        <span class="tag">🙅‍♂️ 쓸모없는 존재</span>
+        <h3 class="scene-h">"도움 안 되는 자들은<br />빠져주시죠!"</h3>
+        <p class="scene-p">
+          그때 부모들이 아이들을 데리고 예수님께 축복을 받으러 왔습니다.<br />
+          하지만 1세기 사회에서 어린아이는 인구 조사에도 안 들어가고,<br />
+          돈도 안 되는, 그저 귀찮은 존재였습니다.
+        </p>
+        <div class="highlight-box">
+          제자들은 "누가 예수님 오른편에 앉을 거냐" 서열 싸움을 하던 자들.<br />
+          그들 눈에 아이들은 '예수님이 왕이 되는 데 쓸모없는 애들'이었습니다.
+        </div>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(4)">← 이전</button><button
+          class="btn-next" onclick="goNext(4)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 5 : 귀신 쫓는 말로 쫓아내다 -->
+  <section class="scene" id="scene-5">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/5.jpeg" alt="귀신 쫓는 말 에피티마오" onerror="this.src='https://placehold.co/800x800/1a1a1a/FFD700?text=Rebuke'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag" style="background:rgba(255,100,100,0.2); color:#ff8080;">🤬 에피티마오</span>
+        <h3 class="scene-h dark-h">"귀신 쫓을 때 쓰는 말로<br />아이들을 쫓아낸 제자들"</h3>
+        <p class="scene-p dark-p">
+          제자들은 부모와 아이들을 '꾸짖었습니다'.<br />
+          여기 쓰인 헬라어 <strong style="color:#ff8080;">'에피티마오'</strong>는 예수님이 귀신을 쫓거나 폭풍우를 잠잠하게 하실 때 쓰던 단어예요.
+        </p>
+        <p class="scene-p dark-p">
+          예수님께 묻지도 않고, 자기들 기준에 '자격 미달'이라고 심사해서<br />
+          확신에 차서 아이들을 귀신 내쫓듯 밀어내버린 겁니다.
+        </p>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(5)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(5)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 6 : 완벽한 서프라이즈의 착각 -->
+  <section class="scene" id="scene-6">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/6.jpeg" alt="아웃백 파티" onerror="this.src='https://placehold.co/800x800/f0f0f0/FFD700?text=Outback'" /></div>
+      <div class="text-block">
+        <span class="tag" style="background:rgba(255,215,0,0.3); color:#b38f00;">🎉 완벽한 착각</span>
+        <h3 class="scene-h">"I 성향 100%에게 시전한<br />아웃백 생일 파티"</h3>
+        <p class="scene-p">
+          MBTI E가 100인 사람이 I가 100인 여자친구에게 서프라이즈를 합니다.<br />
+          '생일엔 아웃백에서 직원 세 명이 탬버린을 치며 노래해야 감동이지!'
+        </p>
+        <p class="scene-p">
+          주변 수십 명의 시선이 꽂히고, 남자친구는 하늘을 날듯 벅차올랐지만<br />
+          정작 여자친구는 얼굴이 새빨개져서 도망치고 싶었던 <strong style="color:#b38f00;">공개 처형</strong>이었습니다.
+        </p>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(6)">← 이전</button><button
+          class="btn-next" onclick="goNext(6)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 7 : 내 기준의 사랑 강요 -->
+  <section class="scene" id="scene-7">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/7.jpeg" alt="자격 심사" onerror="this.src='https://placehold.co/800x800/1a1a1a/FFD700?text=Standard'" /></div>
+      <div class="text-block dark-text" style="color:#d9d9d9;">
+        <span class="tag dark-tag">💯 자격 심사</span>
+        <h3 class="scene-h dark-h">"상대방의 마음을<br />내 기준으로 채점하기"</h3>
+        <p class="scene-p dark-p">
+          이 사람이 뭘 원하는지는 관심 없이, 내 기준에 맞춰 사랑을 준 겁니다.<br />
+          <strong style="color:#FFD700;">'내가 이만큼 해줬으니까, 너는 이만큼 감동받아야 돼.'</strong>
+        </p>
+        <p class="scene-p dark-p">
+          제자들이 예수님 앞에서 한 행동도 똑같았습니다.<br />
+          내 기준에 이 정도는 되어야 한다며 세상의 채점표를 들이댄 겁니다.
+        </p>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(7)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(7)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 8 : 폭발하신 예수님 -->
+  <section class="scene" id="scene-8">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/8.jpeg" alt="몹시 화를 내신 예수님" onerror="this.src='https://placehold.co/800x800/f0f0f0/FFD700?text=Angry'" /></div>
+      <div class="text-block">
+        <span class="tag" style="background:rgba(255,0,0,0.15); color:#cc0000;">🔥 아가낙테오</span>
+        <h3 class="scene-h">"예수님이 몹시 화를 내시다"</h3>
+        <p class="scene-p">
+          죄인들 앞에서는 한없이 부드러우셨던 예수님이<br />
+          가장 아끼던 제자들을 향해 <strong style="color:#cc0000;">'아가낙테오(몹시 화를 내다)'</strong> 하셨습니다.
+        </p>
+        <div class="highlight-box" style="border-color:#cc0000;">
+          쓸모 있는 사람만 끼워주는 세상의 채점표를<br />
+          하나님 나라에까지 그대로 가져와 약한 자를 밀어내는 것.<br />
+          예수님은 누군가가 자신에게 나아오는 것을 막는 걸 절대로 참지 않으셨습니다.
+        </div>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(8)">← 이전</button><button
+          class="btn-next" onclick="goNext(8)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 9 : 계산 없이 달려간 아이들 -->
+  <section class="scene" id="scene-9">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/9.jpeg" alt="계산 없는 달려감" onerror="this.src='https://placehold.co/800x800/1a1a1a/FFD700?text=Running'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag">🏃‍♂️ 무계산의 달음질</span>
+        <h3 class="scene-h dark-h">"자격을 묻지 않고<br />그냥 안기는 아이들"</h3>
+        <p class="scene-p dark-p">
+          어른들은 끊임없이 머릿속으로 '킹우의 수'를 돌리고 계산했지만,<br />
+          이 작은 아이들은 계산 자체를 하지 않았습니다.
+        </p>
+        <p class="scene-p dark-p em-text" style="color:#FFD700;">
+          "내가 가도 될까? 내 모습이 이런데 예수님이 날 반겨주실까?"<br />
+          그런 생각 없이, 그냥 자기를 안아주실 그분의 품으로 비집고 들어갔습니다.
+        </p>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(9)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(9)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 10 : 무릎 꿇으신 예수님 -->
+  <section class="scene" id="scene-10">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/10.jpeg" alt="무릎 꿇은 사랑" onerror="this.src='https://placehold.co/800x800/f0f0f0/FFD700?text=Kneel'" /></div>
+      <div class="text-block">
+        <span class="tag" style="background:rgba(255,215,0,0.3); color:#b38f00;">💝 사랑의 왕</span>
+        <h3 class="scene-h">"세상이 0점을 매긴 자들 앞에<br />무릎을 꿇으시다"</h3>
+        <p class="scene-p">
+          십자가를 지러 예루살렘으로 가시는 긴박한 상황.<br />
+          하지만 예수님은 죽으러 가는 길 위에서 발걸음을 멈추셨습니다.
+        </p>
+        <p class="scene-p">
+          무릎을 꿇고 아이들을 한 명씩 안아주시고 꽉 끌어안으셨습니다.<br />
+          한 명, 한 명을 위해 두 손을 얹어 복을 빌어주셨습니다.
+        </p>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(10)">← 이전</button><button
+          class="btn-next" onclick="goNext(10)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 11 : 하나님 나라 -->
+  <section class="scene" id="scene-11">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/11.jpeg" alt="빈손으로 가는 나라" onerror="this.src='https://placehold.co/800x800/1a1a1a/FFD700?text=Kingdom'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag">👑 하나님 나라</span>
+        <h3 class="scene-h dark-h">"빈손으로 나아가면<br />안아주시는 곳"</h3>
+        <div class="highlight-box dark-highlight" style="border-color:#FFD700;">
+          "하나님 나라를 어린이처럼 받아들이지 않는 사람은<br />절대 들어가지 못한다."
+        </div>
+        <p class="scene-p dark-p">
+          하나님 나라는 자격을 심사해서 점수를 쌓아 들어가는 곳이 아닙니다.<br />
+          아이들처럼 아무것도 한 것 없이, 그저 빈손으로 나아가 안기는 곳입니다.
+        </p>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(11)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(11)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 12 : 결론 -->
+  <section class="scene" id="scene-12">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/12.jpeg" alt="다시 킹받는 일상" onerror="this.src='https://placehold.co/800x800/f0f0f0/FFD700?text=Conclusion'" /></div>
+      <div class="text-block">
+        <span class="tag" style="background:rgba(255,215,0,0.3); color:#b38f00;">💪 진짜 킹</span>
+        <h3 class="scene-h">"세상이 여러분을 밀어낼 때<br />기억해야 할 사실"</h3>
+        <p class="scene-p">
+          내일 학교에 가면 세상은 또 여러분을 채점하고 줄을 세울 겁니다.<br />
+          다시 "몹시 킹받네" 하는 일상이 시작되겠죠.
+        </p>
+        <p class="scene-p em-text" style="color:#b38f00; font-size:1.05rem;">
+          하지만 세상이 여러분을 밀어낼 때, 그분은 밀어내지 않으셨습니다.<br />
+          자격증을 요구하지 않고, 빈손이어도 무릎 꿇고 안아주신<br />
+          예수님이 우리의 '진짜 킹'이십니다.
+        </p>
+        <p class="scene-p" style="color:#a87a00; font-weight:600; margin-top: 1rem;">
+          세상의 '킹받는' 계산에 더 이상 휘둘리지 말고, 영원한 사랑의 왕이신 예수님으로, 그 진정한 '킹'으로 충만해지는 여러분이 되기를 축복합니다!
+        </p>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(12)">← 이전</button><button
+          class="btn-next" onclick="goNext(12)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 13 : 식탁에서 나누기 & 기도 -->
+  <section class="scene" id="scene-13">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="text-block dark-text" style="margin-top:20px;">
+        <h3 class="scene-h dark-h text-center" style="margin-bottom:1.5rem;color:#FFD700;">🍽 식탁에서 나누기</h3>
+        <div class="qa-box" style="background:#1f1f1f;border:1px solid rgba(255,215,0,0.5);padding:1.5rem;border-radius:16px;margin-bottom:1.5rem;">
+          <p class="scene-p dark-p" style="margin-bottom:0.8rem;font-weight:700;font-size:1.1rem;color:#FFD700;">
+            💬 이번 주 가족 식탁 질문
+          </p>
+          <p class="scene-p dark-p" style="font-size:0.95rem;line-height:1.7;color:#e0e0e0;">
+            "나는 평소에 내 쓸모와 자격을 평가받는 것에 얼마나 민감한가요? 자격 없는 나를 무릎 꿇고 안아주신 '진짜 킹' 예수님의 사랑을 생각하며 서로 격려해 봅시다."
+          </p>
+        </div>
+        <div class="qa-box" style="background:#1f1f1f;border:1px solid rgba(255,215,0,0.5);padding:1.5rem;border-radius:16px;">
+          <p class="scene-p dark-p" style="margin-bottom:0.8rem;font-weight:700;font-size:1.1rem;color:#FFD700;">
+            🙏 부모님의 축복 기도
+          </p>
+          <p class="scene-p dark-p" style="font-size:0.95rem;line-height:1.7;color:#e0e0e0;">
+            "하나님, 세상은 끊임없이 성적과 자격으로 우리 아이를 채점하지만, 예수님은 빈손인 우리 아이를 무릎 꿇고 안아주셨음을 기억하게 하소서. 그 사랑의 품에 안겨 평안과 용기를 누리는 우리 자녀 되게 하옵소서. 예수님의 이름으로 기도합니다. 아멘."
+          </p>
+        </div>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(13)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(13)">종료 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 14 : 엔딩 -->
+  <section class="scene" id="scene-14">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/ending.jpeg" alt="엔딩" onerror="this.src='https://placehold.co/800x800/1a1a1a/FFD700?text=Jesus+Loves+You'" /></div>
+      <div class="text-block dark-text" style="text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; padding-top:2rem;">
+        <h2 class="slider-title" style="color:#FFD700; font-size:3rem; margin-bottom:1.5rem; font-family:'Jua', sans-serif;">몹시 킹받네</h2>
+        <p class="scene-p text-white" style="font-size:1.1rem; line-height:1.7; margin-bottom:2.5rem; color:#d9d9d9; word-break:keep-all;">
+          어차피 모든 것을 아시는 왕 앞에서<br />더 이상 계산하지 마세요.<br /><br />
+          자격 없는 우리를 안아주시는 진짜 킹,<br /><strong style="color:#FFD700;">예수님 품에 그냥 안기세요!</strong>
+        </p>
+        <button class="btn-kakao" onclick="shareKakao()" style="background:#FEE500; color:#000; padding:14px 26px; border-radius:30px; font-weight:700; border:none; display:flex; align-items:center; margin:0 auto; gap:8px; font-family:'Jua', sans-serif;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3C6.477 3 2 6.582 2 11c0 2.924 1.733 5.5 4.35 7.072L5.5 21l3.6-2.1A11.2 11.2 0 0012 19c5.523 0 10-3.582 10-8s-4.477-8-10-8z"/>
+          </svg>
+          카카오톡으로 공유하기
+        </button>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons">
+        <button class="btn-prev dark-btn-prev" onclick="goPrev(14)">← 이전</button>
+        <button class="btn-next dark-btn" onclick="showScene(0)" style="background:rgba(255,215,0,0.15); color:#FFD700; border:1px solid #FFD700;">처음으로 ↺</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
