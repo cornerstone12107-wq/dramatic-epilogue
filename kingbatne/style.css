@@ -29,13 +29,7 @@ html, body {
 }
 
 /* scrollable scenes */
-.scroll-scene {
-  overflow-y: auto; overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 88px; /* space for fixed bottom bar */
-}
-.scroll-scene::-webkit-scrollbar { display: none; }
-.scroll-scene { -ms-overflow-style: none; scrollbar-width: none; }
+/* 스크롤 기능을 .text-block으로 이동하여 이미지는 고정되게 함 */
 
 /* ---------- Sound Button ---------- */
 #sound-btn {
@@ -68,7 +62,7 @@ html, body {
    IMAGE CARD
 ────────────────────────────────────────── */
 .img-card {
-  width: 100%; height: 50vh; flex-shrink: 0; background: transparent;
+  width: 100%; height: 45vh; flex-shrink: 0; background: transparent;
   display: flex; align-items: center; justify-content: center;
 }
 .img-card img {
@@ -80,8 +74,12 @@ html, body {
    TEXT BLOCK
 ────────────────────────────────────────── */
 .text-block {
-  width: 100%; min-height: 50vh; padding: 24px 24px 16px; text-align: left;
+  width: 100%; flex: 1; overflow-y: auto; overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 24px 24px 110px; text-align: left;
+  -ms-overflow-style: none; scrollbar-width: none;
 }
+.text-block::-webkit-scrollbar { display: none; }
 .center-block { text-align: center; padding-top: 60px; }
 
 .tag {
