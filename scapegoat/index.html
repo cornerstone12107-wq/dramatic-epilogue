@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>드라마틱 에필로그 — 희생양</title>
+  <meta name="description" content="우리의 모든 수치와 죄를 대신 짊어지고 영원한 광야로 떠나신 나의 아사셀, 예수님." />
+
+  <!-- OG (카카오 공유용) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="드라마틱 에필로그 — 희생양" />
+  <meta property="og:description" content="내 모든 수치와 죄를 대신 짊어지고 영원한 광야로 떠나신 나의 아사셀, 예수님" />
+  <meta property="og:image" content="images/0.jpeg" />
+
+  <!-- Kakao SDK -->
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"
+    integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4"
+    crossorigin="anonymous"></script>
+
+  <!-- Google Fonts (Jua) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- BGM -->
+  <audio id="bgm" src="bgm/bgm.mp3" loop></audio>
+  <button id="sound-btn" aria-label="소리 켜기/끄기" onclick="toggleSound()">🔇</button>
+
+  <!-- SCENE 0 : 표지 -->
+  <section class="scene active" id="scene-0">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/0.jpeg" alt="표지" onerror="this.src='https://placehold.co/800x800/1b1216/d4af37?text=Scapegoat'" /></div>
+      <div class="text-block dark-text" style="display:flex; flex-direction:column; justify-content:flex-start; align-items:center; text-align:center; padding-top:1.5rem;">
+        <p class="ep-label" style="color:#d4af37; margin-bottom:0.8rem; font-weight:600; letter-spacing:2px; font-size:1.1rem;">드라마틱 에필로그</p>
+        <h1 class="main-title" style="font-size:3.5rem; margin-bottom:0.8rem; color:#fff;">희생양</h1>
+        <p class="scripture" style="color:#c8b8bf; margin-bottom:1.5rem; font-size:1.2rem;">레위기 16:20–22, 29–30</p>
+        
+        <div class="scripture-text" style="color:#a89ea2; font-size:1.05rem; line-height:1.7; margin-bottom:2rem; word-break:keep-all; padding:0 15px; text-align:center;">
+          20 그가 성소와 회막과 제단을 위하여 속죄하기를 마친 후에 살아 있는 숫염소를 드리되<br /><br />
+          21 아론은 그의 두 손으로 살아 있는 숫염소의 머리에 안수하여 이스라엘 자손의 모든 불의와 그 범한 모든 죄를 아뢰고 그 죄를 숫염소의 머리에 두어 미리 정한 사람에게 맡겨 광야로 보낼지니<br /><br />
+          22 숫염소가 그들의 모든 불의를 지고 접근하기 어려운 땅에 이르거든 그는 그 숫염소를 광야에 놓을지니라<br /><br />
+          29 너희는 영원히 이 규례를 지킬지니라 일곱째 달 곧 그 달 십일에 너희는 스스로 괴롭게 하고 아무 일도 하지 말되 스스로 난 자든지 너희 중에 거류하는 거류민이든지 그리하라<br /><br />
+          30 이 날에 너희를 위하여 속죄하여 너희를 정결하게 하리니 너희의 모든 죄에서 너희가 여호와 앞에 정결하리라
+        </div>
+
+        <p class="sound-hint" style="color:#8a787f; font-size:0.95rem; margin-bottom:1.2rem;">🎵 사운드를 켜고 감상해주세요</p>
+        <button class="btn-primary" onclick="startApp()" style="background:#d4af37; color:#1b1216; box-shadow: 0 4px 15px rgba(212,175,55,0.4); padding:16px 45px; border-radius:30px; border:none; font-size:1.2rem;">시작하기 →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 1 : 도입 1 - 세상 속의 예배자 -->
+  <section class="scene" id="scene-1">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/1.png" alt="세상 속 신앙인" onerror="this.src='https://placehold.co/800x800/fbf8f3/b85042?text=Faith+in+World'" /></div>
+      <div class="text-block">
+        <span class="tag">🌱 세상 한가운데서</span>
+        <h3 class="scene-h">"스님들이 지나다니는<br />불교 대학 한복판에서"</h3>
+        <p class="scene-p">
+          얼마 전 고등부 선생님의 초청으로 동국대학교를 방문했습니다. 불교 재단이 세운 대학이라 교정 한가운데 커다란 코끼리 동상이 서 있고 스님들이 지나다니는 곳이죠.
+        </p>
+        <p class="scene-p">
+          하지만 그 삼엄한 불교 대학 한복판에서 예수님을 향한 신앙을 지키며 복음의 밀알이 되려는 대학생 형, 누나들의 모습은 저에게 신선한 충격이자 큰 감동이었습니다.
+        </p>
+        <div class="highlight-box">
+          그 모습을 보며 일주일 내내 하나님을 모르는 세상 속에서, 치열한 학업의 스트레스 속에서도 기어코 신앙을 지키기 위해 이 아침 예배의 자리에 나온 여러분이 생각났습니다.<br />
+          <strong>"지나온 삶 속에서 예배를 지켜낸 여러분, 참 자랑스럽습니다."</strong>
+        </div>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(1)">← 이전</button><button
+          class="btn-next" onclick="goNext(1)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 2 : 도입 2 - 다이어트와 보문역 영순관 -->
+  <section class="scene" id="scene-2">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/2.jpeg" alt="중국집 영순관" onerror="this.src='https://placehold.co/800x800/fbf8f3/b85042?text=Chinese+Restaurant'" /></div>
+      <div class="text-block">
+        <span class="tag">🍜 프로혼밥러의 만찬</span>
+        <h3 class="scene-h">"당분간은 못 갈 나의 최애 맛집,<br />보문역 영순관을 소개합니다"</h3>
+        <p class="scene-p">
+          제가 최근 다시 건강을 위해 운동과 식단 관리를 시작했습니다. 야식을 끊고 밀가루를 줄이다 보니, 슬프게도 당분간 먹지 못하게 된 음식이 생겼습니다. 바로 중국 음식입니다.
+        </p>
+        <p class="scene-p">
+          다짐을 굳히기 전, 마지막으로 6호선 보문역 근처 단골 중국집 '영순관'에서 깐풍육에 짬뽕까지 들이켜며 '최후의 만찬'을 즐겼습니다. 1인분 요리를 파는 혼밥러들의 성지죠!
+        </p>
+        <p class="scene-p">
+          참고 참는데도 일주일쯤 지나니 붉고 진한 짬뽕 국물이 머릿속을 맴돌기 시작했습니다.
+        </p>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(2)">← 이전</button><button
+          class="btn-next" onclick="goNext(2)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 3 : 도입 3 - 태훈이 형의 아기 염소 -->
+  <section class="scene" id="scene-3">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/3.jpeg" alt="아기 염소의 기억" onerror="this.src='https://placehold.co/800x800/fbf8f3/b85042?text=Goat+Innocence'" /></div>
+      <div class="text-block">
+        <span class="tag">🐐 동심 파괴의 추억</span>
+        <h3 class="scene-h">"입술에 짜장을 잔뜩 묻힌 채<br />형이 불러준 충격의 아기 염소"</h3>
+        <p class="scene-p">
+          중국집 생각에 어릴 적 교회에서 만난 중국집 첫째 아들 '태훈이 형'이 떠올랐습니다. 쎈 척하길 좋아하던 형은 예배 후 쟁반짜장을 먹으며 동요를 기괴하게 개사해 부르곤 했죠.
+        </p>
+        <div class="highlight-box">
+          "파란 하늘 꿈이 드리운 푸른 언덕에~ 아줌마들 모여서 화투 치고 놀아요~ 삐뽀삐뽀 경찰차가 오면 이불을 뒤집어쓰고..."
+        </div>
+        <p class="scene-p">
+          주방에서 나오시던 어머님께 '등짝 스매시'를 맞으며 노래는 끝났지만, 제 마음속의 푸르고 귀엽던 '아기 염소'의 평화로운 동심은 완전히 조각나 버렸습니다.
+        </p>
+        <p class="scene-p">
+          그런데 오늘 성경 속에서도 우리가 알던 귀여운 아기 염소의 동심을 완전히 깨부수는 피비린내 나고 묵직한 이야기가 펼쳐집니다.
+        </p>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(3)">← 이전</button><button
+          class="btn-next" onclick="goNext(3)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 4 : 본론 1-1 - 대속죄일과 제비뽑기 -->
+  <section class="scene" id="scene-4">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/4.jpeg" alt="대속죄일 제비뽑기" onerror="this.src='https://placehold.co/800x800/1b1216/d4af37?text=Day+of+Atonement'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag">🗳️ 1년에 단 하루</span>
+        <h3 class="scene-h dark-h">"이스라엘의 온 죄를 씻는 날,<br />대제사장 앞에 선 두 마리 염소"</h3>
+        <p class="scene-p dark-p">
+          성경 속 유대인들에게는 1년에 딱 하루, 일 년 동안 쌓인 백성들의 모든 죄를 한 번에 지우는 <strong>'대속죄일(Day of Atonement)'</strong>이 있었습니다. 온 집안을 뒤엎는 대청소 같은 날이었죠.
+        </p>
+        <p class="scene-p dark-p">
+          이날은 대제사장 앞에 똑같이 생기고 아무 흠도 상처도 없는 건강한 염소 두 마리가 끌려 나옵니다. 그리고 제비를 뽑아 두 마리의 운명을 결정합니다.
+        </p>
+        <div class="highlight-box dark-highlight" style="border-left-color: #d4af37;">
+          한쪽 제비에는 <strong style="color:#d4af37;">'여호와를 위하여'</strong>,<br />
+          다른 쪽 제비에는 <strong style="color:#d4af37;">'아사셀을 위하여'</strong>.
+        </div>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(4)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(4)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 5 : 본론 1-2 - 피 흘리는 첫 번째 염소 -->
+  <section class="scene" id="scene-5">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/5.jpeg" alt="첫 번째 염소의 희생" onerror="this.src='https://placehold.co/800x800/1b1216/c83b50?text=The+First+Goat'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag" style="color:#ff6b6b; border-color:#c83b50; background:rgba(200,59,80,0.15);">🩸 여호와를 위한 염소</span>
+        <h3 class="scene-h dark-h">"피비린내 진동하는 제단 위,<br />목 베여 타 들어가는 생명"</h3>
+        <p class="scene-p dark-p">
+          '여호와를 위하여' 뽑힌 첫 번째 염소는 끌려가 즉시 목이 베입니다. 방금 전까지 숨 쉬던 염소는 처참한 비명 속에 쓰러지고 붉은 피가 사방으로 뿜어져 나와 제단에 뿌려집니다. 몸뚱이는 뜨거운 제단 불 속으로 던져져 연기로 사라집니다.
+        </p>
+        <p class="scene-p dark-p">
+          왜 하나님은 이토록 잔인한 제사를 매년 온 백성이 지켜보게 하셨을까요?
+        </p>
+        <div class="highlight-box dark-highlight" style="border-left-color: #c83b50; color:#ffb3b3;">
+          우리가 일상에서 가볍게 지었던 거짓말, 남에게 준 생채기, 나만 아는 은밀한 죄까지... 그 모든 죄의 무게가 결코 가볍지 않다는 것을 붉은 피를 통해 똑똑히 가르쳐주시기 위함이었습니다.
+        </div>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(5)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(5)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 6 : 본론 2-1 - 죄의 전가, 아사셀 염소 -->
+  <section class="scene" id="scene-6">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/6.jpeg" alt="죄의 전가 안수" onerror="this.src='https://placehold.co/800x800/fbf8f3/b85042?text=Azazel+Goat'" /></div>
+      <div class="text-block">
+        <span class="tag">🐏 잘라내기 & 붙여넣기</span>
+        <h3 class="scene-h">"온 백성의 수치와 더러운 죄가<br />아무 죄 없는 염소에게 쏟아지다"</h3>
+        <p class="scene-p">
+          첫 번째 염소가 숨을 거두면, 살아남은 두 번째 염소인 '아사셀을 위한 염소'가 대제사장 앞으로 끌려옵니다. 
+        </p>
+        <p class="scene-p">
+          대제사장은 살아 있는 염소의 머리에 두 손을 얹고 이스라엘 자손의 온갖 우상숭배, 미움, 음란, 탐욕을 낱낱이 자백합니다. 신학적으로 이를 <strong style="color:#b85042;">'전가(Imputation)'</strong>라고 합니다.
+        </p>
+        <div class="highlight-box" style="border-left-color: #b85042; background:#fdf5f3; color:#7d3025;">
+          우리의 수많은 죄악과 은밀한 흑역사의 데이터들이 나에게서 완전히 '잘라내기(Cut)' 되어서, 저 순수한 염소의 머리 위로 '붙여넣기(Paste)' 되는 것입니다.
+        </div>
+        <p class="scene-p">
+          잘못한 것 하나 없는 아기 염소가 온 백성의 수치를 뒤집어쓴 채 '걸어 다니는 죄 덩어리', 즉 억울하게 남의 죄를 대신 지는 존재인 <strong>'희생양(Scapegoat)'</strong>이 되는 순간입니다.
+        </p>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(6)">← 이전</button><button
+          class="btn-next" onclick="goNext(6)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 7 : 본론 2-2 - 광야로 떠나는 길 -->
+  <section class="scene" id="scene-7">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/7.jpeg" alt="광야로 보내지는 염소" onerror="this.src='https://placehold.co/800x800/1b1216/d4af37?text=Path+to+Wilderness'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag">🏜️ 미지의 광야로</span>
+        <h3 class="scene-h dark-h">"다시는 마을로 돌아오지 못하도록<br />저주를 지고 광야 깊은 곳으로"</h3>
+        <p class="scene-p dark-p">
+          이 죄투성이가 된 염소를 마을 근처에 그냥 풀어두면 어떻게 될까요? 염소가 풀을 뜯다가 텐트가 있는 동네로 쫄래쫄래 되돌아오면, 우리가 옮겨 담았던 수치와 저주가 다시 진영 안으로 밀려오게 됩니다. 그건 결코 있을 수 없는 일입니다.
+        </p>
+        <p class="scene-p dark-p">
+          그래서 이스라엘은 건장한 사람 한 명을 미리 정해 이 염소를 끌고 무인지경의 거친 광야, 사막 낭떠러지 끝으로 가게 만들었습니다.
+        </p>
+        <div class="highlight-box dark-highlight" style="border-left-color: #d4af37;">
+          그 밧줄을 쥐고 아사셀 염소를 끌며 사막의 먼지 바람 속으로 묵묵히 걸어 들어가는 한 남자가 되어 그 뜨거운 광야의 심연을 상상해 보십시오.
+        </div>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(7)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(7)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 8 : 본론 2-3 - 밧줄을 쥔 사람의 시선 -->
+  <section class="scene" id="scene-8">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/8.jpeg" alt="절벽 끝 염소와 눈맞춤" onerror="this.src='https://placehold.co/800x800/1b1216/c83b50?text=Goats+Pure+Eyes'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag" style="color:#ff6b6b; border-color:#c83b50; background:rgba(200,59,80,0.15);">👁️ 맑은 눈망울과의 마주함</span>
+        <h3 class="scene-h dark-h">"절벽 끝에서 낑낑대는 염소,<br />그 맑은 눈 속에서 내 죄를 보았다"</h3>
+        <p class="scene-p dark-p">
+          뙤약볕 아래를 걸어 마침내 맹수들조차 다가오지 않는 깎아지른 절벽 끝에 섰습니다. 뒤돌아 나를 쳐다보는 염소의 겁에 질린 맑은 눈망울을 가만히 응시하는데, 갑자기 쿵 하고 가슴이 내려앉습니다.
+        </p>
+        <p class="scene-p dark-p em-text" style="color:#c8b8bf;">
+          그 염소의 작은 어깨 위에, 어젯밤 골방에서 아무도 모르게 행했던 나의 은밀한 수치와 부모님을 향한 날 선 원망, 친구를 조롱하던 이기적인 마음이 잔뜩 짓눌려 있었습니다.
+        </p>
+        <div class="highlight-box dark-highlight" style="border-left-color: #c83b50; color:#ffb3b3;">
+          "이 무고한 생명이 절벽 아래서 찢겨 죽어야만 하는 이유에, 바로 나의 죄가 들어있구나." 뼈저린 진실이 몰아쳤습니다.
+        </div>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(8)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(8)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 9 : 본론 2-4 - 밧줄을 풀며 -->
+  <section class="scene" id="scene-9">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/9.jpeg" alt="밧줄을 푸는 손" onerror="this.src='https://placehold.co/800x800/1b1216/d4af37?text=Release+the+Rope'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag">🏜️ 제발 다신 돌아오지 마라</span>
+        <h3 class="scene-h dark-h">"눈을 질끈 감고 던진 손,<br />내 수치를 다 안고 사라져 다오"</h3>
+        <p class="scene-p dark-p">
+          덜덜 떨리는 손으로 묶여 있던 거친 밧줄을 눈을 질끈 감고 풀어버립니다. 
+        </p>
+        <p class="scene-p dark-p" style="color:#e6dfa2; font-size:1.1rem; line-height:1.8;">
+          "미안하다... 네가 무슨 죄가 있겠니. 내가 지은 추악하고 부끄러운 과거 때문에 네가 이 거친 사막 낭떠러지 끝까지 와버렸구나."
+        </p>
+        <p class="scene-p dark-p">
+          울컥하는 심정으로 깊은 광야의 모래 언덕을 향해 외칩니다.<br />
+          <strong>"가라! 내 더러운 죄를 짊어지고 멀리 가버려라! 제발... 제발 다신 돌아오지 마라!"</strong>
+        </p>
+        <p class="scene-p dark-p">
+          낭떠러지 사막 너머로 터벅터벅 사라지는 그 염소의 작아지는 뒷모습은 과연 누구를 닮았을까요?
+        </p>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(9)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(9)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 10 : 본론 3-1 - 영원한 아사셀 염소, 예수님 -->
+  <section class="scene" id="scene-10">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/10.jpeg" alt="십자가의 예수님" onerror="this.src='https://placehold.co/800x800/1b1216/d4af37?text=Jesus+on+Cross'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag">✝️ 영원한 아사셀</span>
+        <h3 class="scene-h dark-h">"두 마리 염소의 처절한 운명을<br />단번에 짊어지신 진짜 희생양"</h3>
+        <p class="scene-p dark-p">
+          구약의 짐승 제사는 유효기간이 단 1년뿐이었습니다. 그래서 우리의 완전한 본성을 깨끗케 하기 위해, 하나님은 그 끔찍하고 무한히 반복되던 피의 굴레를 끊으려 당신의 독생자를 보내셨습니다.
+        </p>
+        <div class="highlight-box dark-highlight" style="border-left-color: #d4af37;">
+          피 흘려 쓰러진 첫 번째 염소처럼 십자가에서 모든 물과 피를 쏟아 죗값을 완벽히 치르시고, 동시에 우리의 더러운 죄를 등에 지고 버림받은 두 번째 아사셀 염소가 되신 분, 바로 <strong>예수 그리스도</strong>이십니다.
+        </div>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(10)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(10)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 11 : 본론 3-2 - 성문 밖 십자가 길 -->
+  <section class="scene" id="scene-11">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/11.jpeg" alt="성문 밖 십자가 길" onerror="this.src='https://placehold.co/800x800/1b1216/c83b50?text=Outside+the+Gate'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag" style="color:#ff6b6b; border-color:#c83b50; background:rgba(200,59,80,0.15);">🚶‍♂️ 성문 밖 고난의 발걸음</span>
+        <h3 class="scene-h dark-h">"그 무거운 나무 등짝 위에 얹힌 건<br />나의 모든 수치와 흑역사였다"</h3>
+        <p class="scene-p dark-p">
+          히브리서 13장 12절은 말씀합니다. <i>"예수도 자기 피로써 백성을 거룩하게 하려고 성문 밖에서 고난을 받으셨느니라."</i>
+        </p>
+        <p class="scene-p dark-p">
+          온갖 채찍과 침 뱉음을 당하고 발가벗겨진 채 십자가를 메고 예루살렘 성문 밖을 향해 비틀거리며 걸어가시던 주님의 뒤태를 보십시오. 그 거칠고 찢겨진 살점 위에는 나무 십자가만 얹혀 있지 않았습니다.
+        </p>
+        <div class="highlight-box dark-highlight" style="border-left-color: #c83b50; color:#ffb3b3;">
+          거기엔 바로 어제 내가 지었던 부끄러운 거짓말, 내뱉은 더러운 원망과 온갖 흑역사들이 예수님의 어깨 위에 가득 실려 있었습니다!
+        </div>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(11)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(11)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 12 : 본론 3-3 - 사랑 때문에 자원하신 죽음 -->
+  <section class="scene" id="scene-12">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/12.png?v=2" alt="자원하신 예수님의 사랑" onerror="this.src='https://placehold.co/800x800/1b1216/d4af37?text=Willing+Sacrifice'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag">💝 스스로 걸어 들어가신 낭떠러지</span>
+        <h3 class="scene-h dark-h">"그곳은 네가 찢겨 죽을 절벽인데...<br />사랑하는 내 자녀야, 너는 살아라"</h3>
+        <p class="scene-p dark-p">
+          구약의 아사셀 염소는 영문도 모른 채 밧줄에 이끌려 억울하게 끌려갔지만, 하나님의 아들이신 예수님은 도망치고 피하실 수 있는 능력이 있으셨습니다. 그러나 도망치지 않으셨습니다.
+        </p>
+        <p class="scene-p dark-p em-text" style="color:#d4af37; font-size:1.05rem;">
+          이유는 오직 하나, 저와 여러분을 찢어지게 사랑하셨기 때문입니다.
+        </p>
+        <div class="highlight-box dark-highlight" style="border-left-color: #d4af37; color:#fff5d9;">
+          "네가 서야 할 그 저주의 사막 한복판, 네가 굴러떨어져 죽어야 할 절벽 끝에 내가 대신 설게. 네 수치는 내가 다 짊어질 테니... 너는 내 품에서 살아다오."
+        </div>
+        <p class="scene-p dark-p">
+          예수님은 십자가라는 참혹한 낭떠러지에서 우리를 살리시기 위해 기꺼이 자신을 던져 찢겨 죽으셨습니다.
+        </p>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(12)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(12)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 13 : 결론 1 - 사탄의 정죄에 맞서는 선포 -->
+  <section class="scene" id="scene-13">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/13.jpeg" alt="정죄에 맞서는 전사" onerror="this.src='https://placehold.co/800x800/fbf8f3/b85042?text=Declaration+of+Faith'" /></div>
+      <div class="text-block">
+        <span class="tag" style="background:rgba(184,80,66,0.1); color:#b85042;">🛡️ 당당한 선포</span>
+        <h3 class="scene-h">"사탄이 내 과거를 들먹이며 조롱할 때<br />이불 속에 숨지 말고 일어납시다"</h3>
+        <p class="scene-p">
+          우리는 내일 또 세상 속에서 넘어지고 부서질 것입니다. 사탄은 그 틈을 타 "네가 자격이 있겠느냐"며 비웃고, 우리는 겁먹어 이불을 뒤집어쓰고 싶어질 것입니다.
+        </p>
+        <p class="scene-p">
+          하지만 레위기 16장 30절 말씀을 기억합시다. <strong style="color:#b85042;">"이 날에 너희를 위하여 속죄하여 너희를 정결하게 하리니!"</strong>
+        </p>
+        <div class="highlight-box" style="border-left-color:#b85042; background:#fdf5f3;">
+          당당하게 어깨를 펴고 일어납시다. "내 수치와 더러운 죄는 이미 나의 희생양 예수님께 전부 넘어갔다! 주님이 그걸 다 짊어지고 영원한 광야 밖으로 내던지셨다! 내 죄는 십자가에서 끝났다!"
+        </div>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(13)">← 이전</button><button
+          class="btn-next" onclick="goNext(13)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 14 : 결론 2 - 식탁에서 나누기 & 기도문 -->
+  <section class="scene" id="scene-14">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="text-block dark-text" style="margin-top:20px;">
+        <h3 class="scene-h dark-h text-center" style="margin-bottom:1.5rem; color:#d4af37;">🍽 식탁에서 나누기</h3>
+        <div class="qa-box" style="background:#24191e; border:1px solid rgba(212,175,55,0.4); padding:1.5rem; border-radius:16px; margin-bottom:1.5rem;">
+          <p class="scene-p dark-p" style="margin-bottom:0.8rem; font-weight:700; font-size:1.1rem; color:#d4af37;">
+            💬 이번 주 가족 식탁 질문
+          </p>
+          <p class="scene-p dark-p" style="font-size:0.95rem; line-height:1.7; color:#e2dcd9;">
+            "나는 평소 나의 연약함과 부끄러운 과거가 들통나 평가받을까 봐 숨으려 하진 않나요? 내 죄를 대신 안고 영원한 광야로 가신 예수님의 십자가 사랑을 묵상하며 솔직하게 서로 위로를 나눠봅시다."
+          </p>
+        </div>
+        <div class="qa-box" style="background:#24191e; border:1px solid rgba(212,175,55,0.4); padding:1.5rem; border-radius:16px;">
+          <p class="scene-p dark-p" style="margin-bottom:0.8rem; font-weight:700; font-size:1.1rem; color:#d4af37;">
+            🙏 부모님의 축복 기도
+          </p>
+          <p class="scene-p dark-p" style="font-size:0.95rem; line-height:1.7; color:#e2dcd9;">
+            "하나님, 세상은 성적과 실력으로 채점하지만, 예수님은 우리 아이의 모든 수치와 연약함을 대신 지고 광야 절벽에서 희생양이 되셨음을 고백합니다. 그 영원한 속죄를 힘입어 당당히 거룩한 싸움을 해나가는 강인한 하나님의 전사들이 되게 하옵소서. 예수님의 이름으로 기도합니다. 아멘."
+          </p>
+        </div>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(14)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(14)">종료 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 15 : 엔딩 -->
+  <section class="scene" id="scene-15">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/ending.jpeg" alt="엔딩" onerror="this.src='https://placehold.co/800x800/1b1216/d4af37?text=My+Scapegoat+Jesus'" /></div>
+      <div class="text-block dark-text" style="text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; padding-top:2rem;">
+        <h2 class="slider-title" style="color:#d4af37; font-size:clamp(2.2rem, 10vw, 3rem); margin-bottom:1.5rem; font-family:'Jua', sans-serif; line-height:1.2; word-break:keep-all;">희생양</h2>
+        <p class="scene-p text-white" style="font-size:1.1rem; line-height:1.7; margin-bottom:2.5rem; color:#d4ccd0; word-break:keep-all;">
+          우리를 대신하여 온갖 조롱을 뒤집어쓰고<br />
+          성문 밖 거친 광야 절벽 끝으로 떠나신 분.<br /><br />
+          여러분의 아사셀 염소이신<br />
+          <strong style="color:#d4af37;">예수님의 품에 그냥 안기세요!</strong>
+        </p>
+        <button class="btn-kakao" onclick="shareKakao()" style="background:#FFE300; color:#3C1E1E; padding:14px 26px; border-radius:30px; font-weight:700; border:none; display:flex; align-items:center; margin:0 auto; gap:8px; font-family:'Jua', sans-serif; box-shadow:0 4px 18px rgba(255,227,0,0.3);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3C6.477 3 2 6.582 2 11c0 2.924 1.733 5.5 4.35 7.072L5.5 21l3.6-2.1A11.2 11.2 0 0012 19c5.523 0 10-3.582 10-8s-4.477-8-10-8z"/>
+          </svg>
+          카카오톡으로 공유하기
+        </button>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons">
+        <button class="btn-prev dark-btn-prev" onclick="goPrev(15)">← 이전</button>
+        <button class="btn-next dark-btn" onclick="showScene(0)" style="background:rgba(212,175,55,0.15); color:#d4af37; border:1px solid #d4af37;">처음으로 ↺</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
