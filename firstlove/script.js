@@ -29,24 +29,20 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', tryAutoPlay, { once: true });
 });
 
-def_auto_play = () => {
-  if (!soundOn) {
-    bgm.volume = 0.42;
-    bgm.play().then(() => {
-      soundOn = true;
-      soundBtn.textContent = '🔊';
-    }).catch(() => {});
-  }
-}
+let isPlayPending = false;
 
 function tryAutoPlay() {
-  if (!soundOn) {
-    bgm.volume = 0.42;
-    bgm.play().then(() => {
-      soundOn = true;
-      soundBtn.textContent = '🔊';
-    }).catch(() => {});
-  }
+  if (soundOn || isPlayPending) return;
+  isPlayPending = true;
+  bgm.volume = 0.42;
+  bgm.play().then(() => {
+    soundOn = true;
+    soundBtn.textContent = '🔊';
+    isPlayPending = false;
+  }).catch((err) => {
+    console.warn('BGM play blocked or aborted:', err);
+    isPlayPending = false;
+  });
 }
 
 function startApp() {
