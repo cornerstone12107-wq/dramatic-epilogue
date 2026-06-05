@@ -1,0 +1,231 @@
+/* =============================================
+   DRAMATIC EPILOGUE — 하나님이 기뻐하시는 거룩
+   레위기 19:2, 미가 6:8
+   ============================================= */
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: #fbf8f3;
+  font-family: 'Jua', sans-serif;
+  color: #2d2420;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ---------- Scene System ---------- */
+.scene {
+  position: fixed; inset: 0;
+  display: flex; align-items: stretch; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.55s ease;
+}
+.scene.active { opacity: 1; pointer-events: all; }
+
+.scene-inner {
+  width: 100%; max-width: 480px; height: 100%;
+  display: flex; flex-direction: column; align-items: center;
+  position: relative; overflow: hidden;
+  box-shadow: 0 0 40px rgba(0,0,0,0.06);
+  background: inherit;
+}
+
+/* ---------- Sound Button ---------- */
+#sound-btn {
+  position: fixed; top: 16px; right: 16px; z-index: 9999;
+  background: rgba(255,255,255,0.85); border: none; border-radius: 50%;
+  width: 44px; height: 44px; font-size: 20px; cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.2s, background-color 0.2s;
+}
+#sound-btn:active { transform: scale(0.9); }
+
+/* ──────────────────────────────────────────
+   LANDING & COVER (scene-0)
+   ────────────────────────────────────────── */
+.ep-label {
+  font-size: 14px; letter-spacing: 0.18em;
+  color: #d4af37; text-transform: uppercase;
+  margin-bottom: 8px; font-family: 'Jua', sans-serif;
+}
+.main-title {
+  font-family: 'Jua', sans-serif;
+  font-size: clamp(38px, 12vw, 68px);
+  font-weight: 700; color: #2d2420;
+  line-height: 1.1; margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+
+/* ──────────────────────────────────────────
+   IMAGE CARD
+   ────────────────────────────────────────── */
+.img-card {
+  width: 100%; height: 45vh; flex-shrink: 0; background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.img-card img {
+  width: 100%; height: 100%;
+  object-fit: contain; display: block;
+  transition: transform 0.8s ease-in-out;
+}
+.scene.active .img-card img {
+  transform: scale(1.02);
+}
+
+/* ──────────────────────────────────────────
+   TEXT BLOCK
+   ────────────────────────────────────────── */
+.text-block {
+  width: 100%; flex: 1; overflow-y: auto; overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 24px 24px 110px; text-align: left;
+  -ms-overflow-style: none; scrollbar-width: none;
+}
+.text-block::-webkit-scrollbar { display: none; }
+.center-block { text-align: center; padding-top: 60px; }
+
+.tag {
+  display: inline-block; font-size: 12px;
+  letter-spacing: 0.1em; color: #b85042;
+  background: #fdf2f0; border: 1px solid #ebd3cf;
+  border-radius: 20px; padding: 4px 12px; margin-bottom: 14px;
+}
+.dark-tag { color: #d4af37; background: rgba(212,175,55,0.12); border-color: rgba(212,175,55,0.3); }
+
+.scene-h {
+  font-family: 'Jua', sans-serif;
+  font-size: 24px; font-weight: 700;
+  color: #2d2420; line-height: 1.5; margin-bottom: 16px;
+}
+.dark-h { color: #fbf8f3; }
+
+.scene-p {
+  font-size: 17px; line-height: 1.9;
+  color: #53453f; margin-bottom: 14px;
+  word-break: keep-all;
+}
+.scene-p strong { color: #b85042; }
+.scene-p.dark-p { color: #d4ccd0; }
+.scene-p.dark-p strong { color: #d4af37; }
+.em-text { font-style: normal; color: #8a7a6a !important; }
+
+/* ──────────────────────────────────────────
+   HIGHLIGHT BOX
+   ────────────────────────────────────────── */
+.highlight-box {
+  background: #fdf5f3;
+  border-left: 4px solid #b85042;
+  border-radius: 10px;
+  padding: 18px 18px;
+  font-family: 'Jua', sans-serif;
+  font-size: 18px; line-height: 1.9;
+  color: #7d3025; margin: 14px 0;
+  word-break: keep-all;
+}
+.highlight-box strong { color: #b85042; }
+
+.dark-highlight {
+  background: rgba(36,25,30,0.4);
+  border-left-color: #d4af37;
+  color: #d4ccd0;
+}
+.dark-highlight strong { color: #ffeb99; }
+
+/* ──────────────────────────────────────────
+   DARK BACKGROUNDS
+   ────────────────────────────────────────── */
+.dark-bg { background: #121212; }
+.dark-text { color: #d4ccd0; }
+
+/* ──────────────────────────────────────────
+   BOTTOM BAR
+   ────────────────────────────────────────── */
+.bottom-bar {
+  position: absolute; bottom: 0;
+  left: 0; width: 100%;
+  padding: 10px 20px 28px;
+  background: linear-gradient(to top,
+    rgba(251,248,243,1) 70%, rgba(251,248,243,0));
+  z-index: 100;
+}
+.nav-buttons {
+  display: flex; gap: 10px; width: 100%;
+}
+.dark-bar {
+  background: linear-gradient(to top,
+    rgba(18,18,18,1) 70%, transparent) !important;
+}
+
+/* ──────────────────────────────────────────
+   BUTTONS
+   ────────────────────────────────────────── */
+.btn-primary {
+  display: inline-block;
+  background: #b85042; color: white; border: none;
+  border-radius: 50px; padding: 16px 40px;
+  font-size: 18px; font-weight: 600;
+  font-family: 'Jua', sans-serif;
+  cursor: pointer; letter-spacing: 0.03em;
+  box-shadow: 0 4px 20px rgba(184,80,66,0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:active { transform: scale(0.96); }
+
+.btn-next {
+  flex: 1; display: block; width: 100%;
+  background: white; color: #2d2420;
+  border: 1.5px solid #ebd3cf; border-radius: 50px;
+  padding: 16px; font-size: 18px; font-weight: 600;
+  font-family: 'Jua', sans-serif;
+  cursor: pointer; letter-spacing: 0.03em;
+  transition: background 0.2s, transform 0.15s, border-color 0.2s;
+  text-align: center;
+}
+.btn-next:active { transform: scale(0.97); background: #fbf5f3; }
+
+.btn-prev {
+  flex: 1; display: block; width: 100%;
+  background: transparent; color: #8c766f;
+  border: 1.5px solid #ebd3cf; border-radius: 50px;
+  padding: 16px; font-size: 17px; font-weight: 600;
+  font-family: 'Jua', sans-serif;
+  cursor: pointer; letter-spacing: 0.03em;
+  transition: background 0.2s, transform 0.15s;
+  text-align: center;
+}
+.btn-prev:active { transform: scale(0.97); background: #fbf5f3; }
+
+.dark-btn {
+  background: #d4af37 !important;
+  color: #121212 !important;
+  border-color: #d4af37 !important;
+  box-shadow: 0 4px 15px rgba(212,175,55,0.3);
+}
+.dark-btn-prev {
+  border-color: rgba(212,175,55,0.5) !important; color: #e2dcd9 !important; background: transparent !important;
+}
+
+/* ──────────────────────────────────────────
+   KAKAO BUTTON
+   ────────────────────────────────────────── */
+.btn-kakao {
+  display: flex; align-items: center;
+  justify-content: center; gap: 10px;
+  width: 100%; max-width: 340px; margin: 12px auto;
+  background: #FFE300; color: #3C1E1E; border: none;
+  border-radius: 50px; padding: 16px 24px;
+  font-size: 17px; font-weight: 700;
+  font-family: 'Jua', sans-serif;
+  cursor: pointer; letter-spacing: 0.03em;
+  box-shadow: 0 4px 18px rgba(255,227,0,0.4);
+  transition: transform 0.15s;
+}
+.btn-kakao:active { transform: scale(0.97); }
+
+/* ─── Extra Helpers ─── */
+.text-center { text-align: center; }
+.w-full { width: 100%; }
