@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>드라마틱 에필로그 — 나의 FOMO, 방향을 바꾸다</title>
+  <meta name="description" content="뒤처질까 두려운 인생에서, 진짜 주인을 따르는 인생으로!" />
+
+  <!-- OG (카카오 공유용) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="드라마틱 에필로그 — 나의 FOMO, 방향을 바꾸다" />
+  <meta property="og:description" content="뒤처질까 두려운 인생에서, 진짜 주인을 따르는 인생으로!" />
+  <meta property="og:image" content="images/0.jpeg" />
+
+  <!-- Kakao SDK -->
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"
+    integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4"
+    crossorigin="anonymous"></script>
+
+  <!-- Google Fonts (Jua) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- BGM -->
+  <audio id="bgm" src="bgm/bgm.mp3" loop></audio>
+  <button id="sound-btn" aria-label="소리 켜기/끄기" onclick="toggleSound()">🔇</button>
+
+  <!-- SCENE 0 : 표지 -->
+  <section class="scene active" id="scene-0">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/0.jpeg" alt="표지" onerror="this.src='https://placehold.co/800x800/121212/d4af37?text=Follow+One+Master+Only'" /></div>
+      <div class="text-block dark-text" style="display:flex; flex-direction:column; justify-content:flex-start; align-items:center; text-align:center; padding-top:1.5rem;">
+        <p class="ep-label">드라마틱 에필로그</p>
+        <h1 class="main-title" style="color:#fff;">나의 FOMO,<br />방향을 바꾸다</h1>
+        <p class="scripture" style="color:#c8b8bf; margin-bottom:1.5rem; font-size:1.2rem;">시편 24:1, 7</p>
+        
+        <div class="scripture-text" style="color:#a89ea2; font-size:1.05rem; line-height:1.7; margin-bottom:2rem; word-break:keep-all; padding:0 15px; text-align:center;">
+          1 땅과 그 안에 가득 찬 모든 것, 세상과 그 안에 살고 있는 모든 사람은 여호와의 것입니다.<br /><br />
+          7 성문들아, 너희 머리를 들어라. 오래된 문들아, 열려라. 영광의 왕께서 들어가신다.
+        </div>
+
+        <p class="sound-hint" style="color:#8a787f; font-size:0.95rem; margin-bottom:1.2rem;">🎵 사운드를 켜고 감상해주세요</p>
+        <button class="btn-primary" onclick="startApp()" style="background:#d4af37; color:#121212; box-shadow: 0 4px 15px rgba(212,175,55,0.4); padding:16px 45px; border-radius:30px; border:none; font-size:1.2rem;">시작하기 →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 1 : 도입 1 - 우리 시대의 불안 -->
+  <section class="scene" id="scene-1">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/1.jpeg" alt="불안한 현대인" onerror="this.src='https://placehold.co/800x800/fbf8f3/b85042?text=Anxiety'" /></div>
+      <div class="text-block">
+        <span class="tag">⏳ 나만 뒤처지는 두려움</span>
+        <h3 class="scene-h">"혹시 나만 뒤처지고<br />있는 건 아닐까?"</h3>
+        <p class="scene-p">
+          세상의 모든 사람들이 다 잘나가는 것 같고, 나만 제자리에 정체되어 있는 듯한 막연한 불안감.
+        </p>
+        <p class="scene-p">
+          그 두려움을 뜻하는 현대인들의 신조어, 바로 <strong>FOMO(Fear Of Missing Out)</strong>입니다.
+        </p>
+        <div class="highlight-box">
+          성적이든, 친구 관계든, SNS 속 화려한 일상이든,<br />
+          <strong>우리 마음은 늘 뒤처질지 모른다는 두려움으로 조급해집니다.</strong>
+        </div>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(1)">← 이전</button><button
+          class="btn-next" onclick="goNext(1)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 2 : 도입 2 - 인스타와 비교 -->
+  <section class="scene" id="scene-2">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/2.jpeg" alt="인스타 비교" onerror="this.src='https://placehold.co/800x800/fbf8f3/b85042?text=Social+Media'" /></div>
+      <div class="text-block">
+        <span class="tag">📱 끊임없는 비교</span>
+        <h3 class="scene-h">"나만 빼고 모두<br />행복해 보이는 세상"</h3>
+        <p class="scene-p">
+          친구들의 SNS 피드를 보며 씁쓸함을 느끼거나, 남들 다 다니는 학원을 나만 안 가면 큰일이 날 것 같은 불안에 시달려 본 적이 있나요?
+        </p>
+        <p class="scene-p">
+          우리는 나도 모르게 세상의 기준에 맞춰 스스로를 채찍질하고, 두려움에 쫓기며 무언가를 움켜쥐려 바둥거립니다.
+        </p>
+        <div class="highlight-box">
+          남들의 인스타, 망쳐버릴 것 같은 기말고사...<br />
+          <strong>여러분 마음에 불안의 그늘을 드리운 진짜 이유는 무엇인가요?</strong>
+        </div>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(2)">← 이전</button><button
+          class="btn-next" onclick="goNext(2)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 3 : 본론 1 - 50도 사막에서의 질주 -->
+  <section class="scene" id="scene-3">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/3.jpeg" alt="사막 질주" onerror="this.src='https://placehold.co/800x800/fbf8f3/b85042?text=Desert+Run'" /></div>
+      <div class="text-block">
+        <span class="tag">🐫 아버지가 일하던 사막</span>
+        <h3 class="scene-h">"가난과 뒤처짐이 두려워<br />악착같이 달렸던 사막의 시간"</h3>
+        <p class="scene-p">
+          전도사님의 아버지는 가난과 뒤처짐이 너무나 두려웠습니다. 그 두려움을 극복하기 위해, 기온이 50도에 육박하는 척박한 사막에서 청춘을 바쳐 일하셨습니다.
+        </p>
+        <p class="scene-p">
+          더 높이 올라가기 위해, 남들에게 뒤처지지 않기 위해 매 순간 악착같이 달려가셨던 것입니다.
+        </p>
+        <div class="highlight-box">
+          두려움은 때로 우리를 움직이게 하는 엔진이 되지만,<br />
+          <strong>동시에 우리의 삶을 쉴 틈 없이 조급하게 억죄어 옵니다.</strong>
+        </div>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(3)">← 이전</button><button
+          class="btn-next" onclick="goNext(3)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 4 : 본론 2 - 채워도 채워지지 않는 빈 공간 -->
+  <section class="scene" id="scene-4">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/4.jpeg" alt="공허함" onerror="this.src='https://placehold.co/800x800/fbf8f3/b85042?text=Emptiness'" /></div>
+      <div class="text-block">
+        <span class="tag">🍂 공허함 (현타)</span>
+        <h3 class="scene-h">"세상의 성공을 얻었지만,<br />여전히 헛헛했던 마음"</h3>
+        <p class="scene-p">
+          결국 세상의 기준대로 멋진 아파트도 사고 좋은 차도 샀습니다. 그러나 아버지는 행복하지 않았습니다. 마음에 알 수 없는 공허함이 가득했기 때문입니다.
+        </p>
+        <p class="scene-p">
+          우리도 밤새워 게임 만렙을 찍었을 때 몰려오는 씁쓸함, 비싼 옷을 샀지만 막상 입고 갈 곳이 없을 때 느끼는 헛헛함처럼 '현타'를 마주하곤 합니다.
+        </p>
+        <div class="highlight-box" style="border-left-color: #b85042;">
+          세상의 것들은 아무리 열심히 채워도,<br />
+          <strong>결국 모래처럼 다 빠져나가는 빈 공간이 마음에 남습니다.</strong>
+        </div>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(4)">← 이전</button><button
+          class="btn-next" onclick="goNext(4)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 5 : 본론 3 - 칭다오 비밀 신학교의 황소 -->
+  <section class="scene" id="scene-5">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/5.jpeg" alt="지하신학교" onerror="this.src='https://placehold.co/800x800/fbf8f3/b85042?text=Underground+Church'" /></div>
+      <div class="text-block">
+        <span class="tag">🇨🇳 칭다오 지하 신학교</span>
+        <h3 class="scene-h">"잡혀갈까 봐 두려운 게 아니라,<br />말씀을 빼앗길까 봐 두렵습니다"</h3>
+        <p class="scene-p">
+          전도사님이 중국 칭다오의 허름한 창고 지하 신학교에서 만난 한 성도님이 계셨습니다.
+        </p>
+        <p class="scene-p">
+          그곳은 공안 경찰에 걸리면 당장 감옥에 끌려가야 하는 위험천만한 곳이었지만, 그분의 얼굴에는 미소가 가득했습니다.
+        </p>
+        <div class="highlight-box">
+          그는 공안보다 오직 '말씀'을 빼앗길까 봐 두려워하며,<br />
+          <strong>성경 700페이지를 외우며 황소처럼 환하게 웃고 있었습니다.</strong>
+        </div>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(5)">← 이전</button><button
+          class="btn-next" onclick="goNext(5)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 6 : 본론 4 - 두려움의 주인이 바뀌다 -->
+  <section class="scene" id="scene-6">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/6.jpeg" alt="황소의 미소" onerror="this.src='https://placehold.co/800x800/fbf8f3/b85042?text=Brave+Smile'" /></div>
+      <div class="text-block">
+        <span class="tag">🐂 황소의 미소</span>
+        <h3 class="scene-h">"진짜 두려워해야 할 대상을<br />아는 사람이 누리는 자유"</h3>
+        <p class="scene-p">
+          그 지하 신학교 성도님은 세상의 권력이나 체포를 두려워하지 않았습니다. 그가 두려워한 것은 오직 '하나님의 말씀을 사랑하지 못하고 잃어버리는 것'뿐이었습니다.
+        </p>
+        <p class="scene-p">
+          가장 큰 권능을 가지신 하나님만을 경외했기에, 그는 세상의 그 어떤 위협 앞에서도 두려움 없이 자유롭게 미소 지을 수 있었습니다.
+        </p>
+        <div class="highlight-box" style="border-left-color: #b85042;">
+          세상이 주는 두려움에 무릎 꿇지 않고,<br />
+          <strong>오직 하나님만을 경외할 때, 세상이 감당 못 할 자유가 시작됩니다.</strong>
+        </div>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(6)">← 이전</button><button
+          class="btn-next" onclick="goNext(6)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 7 : 본론 5 - 진짜 FOMO의 탄생 -->
+  <section class="scene" id="scene-7">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/7.jpeg" alt="진짜 FOMO" onerror="this.src='https://placehold.co/800x800/121212/d4af37?text=Real+Master'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag">👑 진짜 FOMO의 의미</span>
+        <h3 class="scene-h dark-h">"Follow One Master Only!<br />오직 한 주인만 따르다"</h3>
+        <p class="scene-p dark-p">
+          이제 불안의 단어였던 FOMO를, 크리스천으로서 완전히 새롭게 해석해 봅시다.
+        </p>
+        <p class="scene-p dark-p">
+          <strong>Follow One Master Only!</strong>
+        </p>
+        <p class="scene-p dark-p">
+          남들과 비교하며 조급해하는 것이 아니라, 내 인생의 유일한 구원자이신 진짜 주인 한 분만을 바라보는 것입니다.
+        </p>
+        <div class="highlight-box dark-highlight" style="border-left-color: #d4af37;">
+          세상에 한눈팔지 않고 진짜 주인만을 바라보는 것,<br />
+          <strong>그것이 우리가 살아내야 할 두려움 없는 진짜 믿음의 방향입니다.</strong>
+        </div>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(7)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(7)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 8 : 본론 6 - 문들아 머리를 들어라 -->
+  <section class="scene" id="scene-8">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/8.jpeg" alt="문들아 머리를 들어라" onerror="this.src='https://placehold.co/800x800/121212/d4af37?text=Open+Gates'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag">📖 시편 24편</span>
+        <h3 class="scene-h dark-h">"온 우주가 하나님의 소유임을<br />기억할 때 열리는 평화"</h3>
+        <p class="scene-p dark-p">
+          시편 24:1은 '땅과 그 안에 가득 찬 모든 것, 세상과 그 주민이 다 여호와의 것'이라고 선포합니다.
+        </p>
+        <p class="scene-p dark-p">
+          내 공부도, 내 미래도, 내 키와 외모도, 내 인생도 전부 원래 하나님의 것입니다. 그렇기에 내게는 잃어버릴 것도, 빼앗길 것도 없습니다.
+        </p>
+        <div class="highlight-box dark-highlight" style="border-left-color: #d4af37;">
+          내 인생이 그 위대한 하나님의 손안에 있음을 인정할 때,<br />
+          <strong>내 마음의 문을 굳게 닫고 있던 두려움이 스르르 떠나갑니다.</strong>
+        </div>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(8)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(8)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 9 : 본론 7 - 십자가, 모든 것을 내어주신 주인 -->
+  <section class="scene" id="scene-9">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/9.jpeg" alt="십자가의 사랑" onerror="this.src='https://placehold.co/800x800/121212/d4af37?text=Cross+Love'" /></div>
+      <div class="text-block dark-text">
+        <span class="tag dark-tag">✝️ 십자가의 사랑</span>
+        <h3 class="scene-h dark-h">"우리를 소유하기 위해<br />자기 생명 전부를 비우신 사랑"</h3>
+        <p class="scene-p dark-p">
+          우리의 인생을 하나님의 것으로 되돌려 놓기 위해, 예수님은 이 땅에 직접 오셔서 십자가를 지셨습니다.
+        </p>
+        <p class="scene-p dark-p">
+          스스로 영광을 버리고 자신의 물과 피를 다 흘려, 우리를 위해 모든 것을 내어주셨습니다.
+        </p>
+        <div class="highlight-box dark-highlight" style="border-left-color: #d4af37; color:#fff5d9;">
+          나를 얻으려 전부를 아낌없이 던지신 주님이시기에,<br />
+          <strong>그 크신 사랑 아래서 우리는 영원히 안전합니다.</strong>
+        </div>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(9)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(9)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 10 : 결론 1 - 내 마음의 문을 여는 고백 -->
+  <section class="scene" id="scene-10">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/10.jpeg" alt="마음의 문" onerror="this.src='https://placehold.co/800x800/fbf8f3/b85042?text=Open+Heart'" /></div>
+      <div class="text-block">
+        <span class="tag">🚪 마음의 문을 열며</span>
+        <h3 class="scene-h">"꽉 쥔 손을 활짝 펴고<br />영광의 왕을 환영합니다"</h3>
+        <p class="scene-p">
+          지금까지 내 미래와 성공을 나 혼자 책임지려 불안에 떨며 꽁꽁 쥐고 있었던 주먹을 펴 봅시다.
+        </p>
+        <p class="scene-p">
+          오래되고 단단하게 닫혀 있던 내 마음의 문을 향해 선포합니다. "문들아 머리를 들어라, 영광의 왕이 들어가신다!"
+        </p>
+        <div class="highlight-box" style="border-left-color: #b85042; font-size:1.02rem; line-height:1.8;">
+          <strong>"예수님, 제가 세상의 뒤처짐 때문에 불안하고 흔들렸어요. 이제 꽉 쥔 손을 펴고 마음의 문을 엽니다. 나의 진짜 주인이신 영광의 임금님, 내 마음에 들어오세요!"</strong>
+        </div>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(10)">← 이전</button><button
+          class="btn-next" onclick="goNext(10)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 11 : 결론 2 - 포모 2행시 결단 -->
+  <section class="scene" id="scene-11">
+    <div class="scene-inner scroll-scene">
+      <div class="img-card"><img src="images/11.jpeg" alt="2행시 결단" onerror="this.src='https://placehold.co/800x800/fbf8f3/b85042?text=Resolution'" /></div>
+      <div class="text-block">
+        <span class="tag">✊ 믿음의 결단</span>
+        <h3 class="scene-h">"주먹을 꽉 쥐고 외치는<br />믿음의 2행시 결단!"</h3>
+        <p class="scene-p" style="font-size:1.2rem; line-height:1.8; margin-bottom:1.5rem;">
+          <strong style="color: #b85042; font-size:1.5rem;">[포]</strong> : 포기하고 싶고, 뒤처질까 봐 불안했던 내 인생에<br />
+          <strong style="color: #b85042; font-size:1.5rem;">[모]</strong> : 모든 것의 진짜 주인이신 예수님이 들어오셨다! 난 세상이 감당 못 할 사람이다!
+        </p>
+        <div class="highlight-box" style="border-left-color: #b85042;">
+          우리는 두려움에 쫓기는 나약한 존재가 아닙니다.<br />
+          <strong>우리는 진짜 주인을 따르는, 세상이 감당할 수 없는 하나님의 사람입니다!</strong>
+        </div>
+      </div>
+      <div class="bottom-bar nav-buttons"><button class="btn-prev" onclick="goPrev(11)">← 이전</button><button
+          class="btn-next" onclick="goNext(11)">다음 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 12 : 결론 3 - 식탁에서 나누기 & 기도문 -->
+  <section class="scene" id="scene-12">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="text-block dark-text" style="margin-top:20px;">
+        <h3 class="scene-h dark-h text-center" style="margin-bottom:1.5rem; color:#d4af37;">🍽 식탁에서 나누기</h3>
+        <div class="qa-box" style="background:#1e1418; border:1px solid rgba(212,175,55,0.4); padding:1.5rem; border-radius:16px; margin-bottom:1.5rem;">
+          <p class="scene-p dark-p" style="margin-bottom:0.8rem; font-weight:700; font-size:1.1rem; color:#d4af37;">
+            💬 이번 주 가족 식탁 질문
+          </p>
+          <p class="scene-p dark-p" style="font-size:0.95rem; line-height:1.7; color:#e2dcd9;">
+            "오늘 나눴던 이야기처럼, 내 삶을 불안하게 만들고 자꾸 내 손에 꽉 쥐게 만드는 '나만의 FOMO(두려움)'는 무엇인가요? 이제 내 마음의 주인을 예수님 한 분(Follow One Master Only)으로 바꾸기 위해, 이번 주 내 일상에서 꽉 쥔 손을 펴고 실천해볼 수 있는 구체적인 결단은 무엇인지 나누어봅시다."
+          </p>
+        </div>
+        <div class="qa-box" style="background:#1e1418; border:1px solid rgba(212,175,55,0.4); padding:1.5rem; border-radius:16px;">
+          <p class="scene-p dark-p" style="margin-bottom:0.8rem; font-weight:700; font-size:1.1rem; color:#d4af37;">
+            🙏 부모님의 축복 기도
+          </p>
+          <p class="scene-p dark-p" style="font-size:0.95rem; line-height:1.7; color:#e2dcd9;">
+            "하나님, 우리 아이가 세상의 성적이나 비교, 뒤처질지 모른다는 두려움(FOMO)에 사로잡혀 불안해하는 인생이 되지 않게 하옵소서. 온 우주와 우리 아이 인생의 진짜 주인이 하나님이심을 깨닫게 하시고, 꽉 쥐고 있던 불안의 주먹을 펴고 마음의 문을 활짝 열어 영광의 왕 예수님을 온전히 모시게 하옵소서. 오직 진짜 주인 한 분만을 경외하고 따르는(Follow One Master Only) 복된 믿음의 삶이 되게 하옵소서. 예수님의 이름으로 기도합니다. 아멘."
+          </p>
+        </div>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons"><button class="btn-prev dark-btn-prev" onclick="goPrev(12)">← 이전</button><button
+          class="btn-next dark-btn" onclick="goNext(12)">종료 →</button></div>
+    </div>
+  </section>
+
+  <!-- SCENE 13 : 엔딩 -->
+  <section class="scene" id="scene-13">
+    <div class="scene-inner scroll-scene dark-bg">
+      <div class="img-card"><img src="images/13.jpeg" alt="엔딩" onerror="this.src='https://placehold.co/800x800/121212/d4af37?text=Follow+One+Master+Only'" /></div>
+      <div class="text-block dark-text" style="text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; padding-top:2rem;">
+        <h2 class="slider-title" style="color:#d4af37; font-size:clamp(2.2rem, 10vw, 3rem); margin-bottom:1.5rem; font-family:'Jua', sans-serif; line-height:1.2; word-break:keep-all;">나의 FOMO,<br />방향을 바꾸다</h2>
+        <p class="scene-p text-white" style="font-size:1.15rem; line-height:1.7; margin-bottom:2.5rem; color:#d4ccd0; word-break:keep-all;">
+          뒤처질까 두려운 인생에서<br />
+          진짜 주인을 따르는 인생으로!<br /><br />
+          내 인생을 불안에 떨게 하던 세상의 가짜 주인들을 버리고,<br />
+          <strong style="color:#d4af37;">오직 진짜 왕이신 예수님 한 분만 따르십시오.</strong>
+        </p>
+        <button class="btn-kakao" onclick="shareKakao()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3C6.477 3 2 6.582 2 11c0 2.924 1.733 5.5 4.35 7.072L5.5 21l3.6-2.1A11.2 11.2 0 0012 19c5.523 0 10-3.582 10-8s-4.477-8-10-8z"/>
+          </svg>
+          카카오톡으로 공유하기
+        </button>
+      </div>
+      <div class="bottom-bar dark-bar nav-buttons">
+        <button class="btn-prev dark-btn-prev" onclick="goPrev(13)">← 이전</button>
+        <button class="btn-next dark-btn" onclick="showScene(0)" style="background:rgba(212,175,55,0.15); color:#d4af37; border:1px solid #d4af37;">처음으로 ↺</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
